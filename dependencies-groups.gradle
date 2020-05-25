@@ -1,0 +1,71 @@
+def Group(Closure closure) {
+    closure.delegate = dependencies
+    return closure
+}
+
+ext {
+    core = Group {
+        implementation deps.google.androidx.appcompat
+        implementation deps.google.androidx.core
+        implementation deps.kotlin.core
+        implementation deps.kotlin.reflect
+        implementation deps.rxjava.core
+        implementation deps.rxjava.android
+        implementation deps.rxjava.android
+        implementation deps.gson
+        implementation deps.google.androidx.design
+    }
+    di = Group {
+        implementation deps.dagger.core
+        implementation deps.dagger.androidSupport
+        kapt deps.dagger.compiler
+        kapt deps.dagger.processor
+    }
+    ui = Group {
+        implementation deps.google.androidx.cardview
+        implementation deps.google.androidx.recyclerview
+        implementation deps.google.androidx.design
+        implementation deps.google.androidx.constraintLayout
+        implementation deps.google.androidx.preference
+        implementation deps.google.androidx.navigationFragment
+        implementation deps.google.androidx.navigationUi
+    }
+    monitoring = Group {
+        implementation deps.google.firebase.core
+        implementation (deps.google.firebase.crashlytics) { transitive = true }
+    }
+    image = Group {
+        implementation deps.glide.core
+        implementation deps.glide.okhttp
+        kapt deps.glide.compiler
+    }
+    network = Group {
+        implementation deps.okhttp.core
+        implementation deps.okhttp.logging
+        implementation deps.retrofit.core
+        implementation deps.retrofit.gson
+        implementation deps.retrofit.rxjava
+    }
+    debug = Group {
+        debugImplementation deps.leakCanary
+    }
+    test = Group {
+        testImplementation deps.junit
+        testImplementation deps.mockito
+        testImplementation deps.mockitoKotlin
+        testImplementation deps.hamcrest
+        testImplementation deps.fest
+        testImplementation deps.truth
+        lintChecks project(":lint-rules")
+    }
+    robolectric = Group {
+        testImplementation deps.robolectric
+    }
+    instrumentation = Group {
+        androidTestImplementation deps.hamcrest
+        androidTestImplementation deps.google.testSupport.runner
+        androidTestImplementation deps.google.espresso.core
+        androidTestImplementation deps.google.espresso.contrib
+        androidTestImplementation deps.mockitoAndroid
+    }
+}
