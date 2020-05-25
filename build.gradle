@@ -12,9 +12,7 @@ buildscript {
 
         classpath "com.android.tools.build:gradle:$versions.androidGradlePlugin"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath "com.diffplug.spotless:spotless-plugin-gradle:$versions.spotlessPlugin"
     }
 }
 
@@ -32,6 +30,22 @@ allprojects {
     dependencies { apply from: "$rootProject.rootDir/dependencies-groups.gradle" }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+apply plugin: 'com.diffplug.gradle.spotless'
+spotless {
+    kotlin {
+        target 'src/**/*.kt'
+    }
+}
+
+
+subprojects {
+    apply plugin: 'io.gitlab.arturbosch.detekt'
+    detekt {
+        reports {
+            html {
+                enabled = true
+                destination = file("$projectDir/build/detekt.html")
+            }
+        }
+    }
 }
