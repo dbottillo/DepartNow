@@ -51,10 +51,9 @@ ext {
     }
     test = Group {
         testImplementation deps.junit
-        testImplementation deps.mockito
-        testImplementation deps.mockitoKotlin
+        testImplementation deps.mockito.core
+        testImplementation deps.mockito.kotlin
         testImplementation deps.hamcrest
-        testImplementation deps.fest
         testImplementation deps.truth
         lintChecks project(":lint-rules")
     }
@@ -66,6 +65,6 @@ ext {
         androidTestImplementation deps.google.testSupport.runner
         androidTestImplementation deps.google.espresso.core
         androidTestImplementation deps.google.espresso.contrib
-        androidTestImplementation deps.mockitoAndroid
+        androidTestImplementation deps.mockito.android
     }
 }

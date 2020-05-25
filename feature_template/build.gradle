@@ -1,0 +1,13 @@
+apply plugin: 'com.android.library'
+apply from: '../config-android.gradle'
+
+dependencies {
+    implementation project(':core_ui')
+    implementation project(':domain_ui')
+    implementation project(':data_{FEATURE_NAME}')
+
+    core()
+    ui()
+
+    test()
+}

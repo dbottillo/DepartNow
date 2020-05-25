@@ -1,0 +1,11 @@
+apply plugin: 'com.android.library'
+apply from: '../config-android.gradle'
+
+dependencies {
+    api project(':core_ui')
+    api project(':domain')
+
+    core()
+
+    test()
+}
