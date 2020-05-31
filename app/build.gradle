@@ -29,6 +29,8 @@ android {
 }
 
 dependencies {
+    implementation project(":domain_ui")
+    implementation project(":feature_home")
     core()
     ui()
 
