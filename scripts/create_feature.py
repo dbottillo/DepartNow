@@ -6,6 +6,7 @@ import os
 import re
 import shutil
 
+
 class LogColor:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
@@ -33,6 +34,17 @@ def copy_data_template():
 
 def copy_feature_template():
     shutil.copytree('../feature_template', feature_path)
+
+
+def create_feature_package():
+    os.mkdir(feature_data_path + "src/main/java/com/dbottillo/replacename/feature")
+    os.mkdir(feature_data_path + "src/test/java/com/dbottillo/replacename/feature")
+    os.mkdir(feature_path + "src/main/java/com/dbottillo/replacename/feature")
+    os.mkdir(feature_path + "src/test/java/com/dbottillo/replacename/feature")
+    os.mkdir(feature_data_path + "src/main/java/com/dbottillo/replacename/feature/" + feature_name)
+    os.mkdir(feature_data_path + "src/test/java/com/dbottillo/replacename/feature/" + feature_name)
+    os.mkdir(feature_path + "src/main/java/com/dbottillo/replacename/feature/" + feature_name)
+    os.mkdir(feature_path + "src/test/java/com/dbottillo/replacename/feature/" + feature_name)
 
 
 def format_files_content():
@@ -93,6 +105,7 @@ if __name__ == '__main__':
     feature_path = '../feature_' + feature_name + "/"
     perform_step('Copying data template...', copy_data_template)
     perform_step('Copying feature template...', copy_feature_template)
+    perform_step('Create feature package', create_feature_package)
     perform_step('Formatting files content...', format_files_content)
     perform_step('Tidying up module...', tidy_up_module)
     perform_step('Adding ' + feature_name + ' to settings.gradle', integrate_feature)
