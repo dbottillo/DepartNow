@@ -1,19 +1,20 @@
 ext.versions = [
         // plugins
-        'androidGradlePlugin': '3.6.3',
+        'androidGradlePlugin': '4.0.0',
         'spotlessPlugin': '4.0.1',
+        'gradleVersionsPlugin': '0.28.0',
 
         // kotlin
         'kotlin'           : '1.3.72',
 
         // google
         'androidx'         : [
-                'core': '1.2.0',
+                'core': '1.3.0',
                 'cardview': '1.0.0',
                 'recyclerview': '1.1.0',
                 'compat': '1.1.0',
                 'preference': '1.1.1',
-                'navigation': '2.0.0'
+                'navigation': '2.2.2'
         ],
         'material'         : '1.1.0',
         'dagger'           : '2.27',
@@ -49,5 +50,5 @@ ext.versions = [
         'dexmaker_mockito' : '1.2',
         'robolectric'      : '4.3.1',
         'truth'            : '1.0.1',
-        'lint'             : '26.6.3'
+        'lint'             : '27.0.0'
 ]

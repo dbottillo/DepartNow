@@ -11,6 +11,7 @@ buildscript {
         apply from: 'dependencies-all.gradle'
 
         classpath "com.android.tools.build:gradle:$versions.androidGradlePlugin"
+        classpath "com.github.ben-manes:gradle-versions-plugin:$versions.gradleVersionsPlugin"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
         classpath "com.diffplug.spotless:spotless-plugin-gradle:$versions.spotlessPlugin"
     }
@@ -45,6 +46,20 @@ subprojects {
             html {
                 enabled = true
                 destination = file("$projectDir/build/detekt.html")
+            }
+        }
+    }
+}
+
+apply plugin: 'com.github.ben-manes.versions'
+dependencyUpdates.resolutionStrategy = {
+    componentSelection { rules ->
+        rules.all { ComponentSelection selection ->
+            boolean rejected = ['alpha', 'beta', 'rc', 'atlassian'].any { qualifier ->
+                selection.candidate.version.contains(qualifier)
+            }
+            if (rejected) {
+                selection.reject('Release candidate')
             }
         }
     }
