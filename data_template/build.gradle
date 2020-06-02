@@ -6,6 +6,7 @@ dependencies {
     implementation project(':domain')
 
     core()
+    di()
 
     test()
 }

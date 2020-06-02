@@ -1,22 +1,28 @@
 package com.dbottillo.replacename.feature.home
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import com.dbottillo.replacename.Navigator
+import com.dbottillo.replacename.di.HomeComponentProvider
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class HomeActivity : AppCompatActivity() {
 
+    @Inject lateinit var navigator: Navigator
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        ((applicationContext as HomeComponentProvider).provideHomeComponent()).inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+                    .setAction("Action", null).show()
         }
     }
 
@@ -31,7 +37,10 @@ class HomeActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_about -> true
+            R.id.action_about -> {
+                navigator.openAboutScreen(this)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

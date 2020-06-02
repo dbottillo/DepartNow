@@ -1,5 +1,7 @@
 package com.dbottillo.replacename
 
-interface Navigator {
+import android.app.Activity
 
+interface Navigator {
+    fun openAboutScreen(origin: Activity)
 }

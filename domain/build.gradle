@@ -3,6 +3,7 @@ apply from: '../config-common.gradle'
 
 dependencies {
     core()
+    di()
 
     test()
 }

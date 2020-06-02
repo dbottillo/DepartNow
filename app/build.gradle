@@ -31,8 +31,10 @@ android {
 dependencies {
     implementation project(":domain_ui")
     implementation project(":feature_home")
+    implementation project(":feature_about")
     core()
     ui()
+    di()
 
     test()
 

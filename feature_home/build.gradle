@@ -5,9 +5,9 @@ dependencies {
     implementation project(':core_ui')
     implementation project(':domain_ui')
     implementation project(':data_home')
-    implementation project(':feature_about')
 
     core()
+    di()
     ui()
 
     test()

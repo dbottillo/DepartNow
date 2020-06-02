@@ -2,27 +2,27 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
+    android:id="@+id/home_nav_graph"
     app:startDestination="@id/HomeFragment">
 
     <fragment
         android:id="@+id/HomeFragment"
         android:name="com.dbottillo.replacename.feature.home.HomeFragment"
-        android:label="@string/first_fragment_label"
+        android:label="@string/home_fragment_label"
         tools:layout="@layout/fragment_home">
 
         <action
-            android:id="@+id/action_HomeFragment_to_AboutFragment"
-            app:destination="@id/AboutFragment" />
+            android:id="@+id/action_HomeFragment_to_HomeDetailFragment"
+            app:destination="@id/HomeDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/AboutFragment"
-        android:name="com.dbottillo.replacename.feature.about.AboutFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_about">
+        android:id="@+id/HomeDetailFragment"
+        android:name="com.dbottillo.replacename.feature.home.HomeDetailFragment"
+        android:label="@string/home_detail_fragment_label"
+        tools:layout="@layout/fragment_detail_home">
 
         <action
-            android:id="@+id/action_AboutFragment_to_HomeFragment"
+            android:id="@+id/action_HomeDetailFragment_to_HomeFragment"
             app:destination="@id/HomeFragment" />
     </fragment>
 </navigation>

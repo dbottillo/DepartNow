@@ -1,0 +1,10 @@
+<resources>
+    <string name="action_about">About</string>
+    <string name="home_fragment_label">Home Fragment</string>
+    <string name="home_detail_fragment_label">Home Detail Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_home_fragment">Hello first fragment</string>
+    <string name="hello_home_detail_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>

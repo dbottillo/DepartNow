@@ -5,6 +5,7 @@ dependencies {
     implementation project(':core')
 
     core()
+    di()
     ui()
 
     test()
