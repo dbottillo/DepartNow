@@ -7,9 +7,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [HomeModule::class, AppModule::class])
 interface AppComponent{
-    //fun navigator(): AppNavigator
-
     fun homeComponent(): HomeComponent.Factory
-}
 
-interface AppNavigator
+    fun aboutComponent(): AboutComponent.Factory
+}
