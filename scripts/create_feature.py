@@ -29,11 +29,11 @@ def perform_step(log_message, method):
 
 
 def copy_data_template():
-    shutil.copytree('../data_template', feature_data_path)
+    shutil.copytree('../template/template_data', feature_data_path)
 
 
 def copy_feature_template():
-    shutil.copytree('../feature_template', feature_path)
+    shutil.copytree('../template/template_ui', feature_path)
 
 
 def create_feature_package():
@@ -86,7 +86,7 @@ def format_content(root, filenames):
 
 def integrate_feature():
     f = open('../settings.gradle', 'a')
-    f.write('include \':data_' + feature_name + '\', \':feature_' + feature_name + '\' \n')
+    f.write('include \':' + feature_name + ':' + feature_name + '_data\',\':' + feature_name + ':' + feature_name + '_ui\' \n')
     f.close()
 
 
@@ -101,8 +101,8 @@ if __name__ == '__main__':
         raise ValueError('Invalid option: feature name can\'t be null')
 
     log('Creating ' + feature_name + ' feature')
-    feature_data_path = '../data_' + feature_name + "/"
-    feature_path = '../feature_' + feature_name + "/"
+    feature_data_path = '../' + feature_name + '/' + feature_name + '_data/'
+    feature_path = '../' + feature_name + '/' + feature_name + '_ui/'
     perform_step('Copying data template...', copy_data_template)
     perform_step('Copying feature template...', copy_feature_template)
     perform_step('Create feature package', create_feature_package)
