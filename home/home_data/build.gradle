@@ -1,5 +1,5 @@
 apply plugin: 'java-library'
-apply from: '../config-common.gradle'
+apply from: "$rootDir/config-common.gradle"
 
 dependencies {
     implementation project(':core')

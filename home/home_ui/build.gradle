@@ -1,10 +1,10 @@
 apply plugin: 'com.android.library'
-apply from: '../config-android.gradle'
+apply from: "$rootDir/config-android.gradle"
 
 dependencies {
     implementation project(':core_ui')
     implementation project(':domain_ui')
-    implementation project(':data_about')
+    implementation project(':home:home_data')
 
     core()
     di()

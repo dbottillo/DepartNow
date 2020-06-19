@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply from: '../config-android.gradle'
+apply from: "$rootDir/config-android.gradle"
 
 android {
     defaultConfig {
@@ -30,8 +30,8 @@ android {
 
 dependencies {
     implementation project(":domain_ui")
-    implementation project(":feature_home")
-    implementation project(":feature_about")
+    implementation project(":home:home_ui")
+    implementation project(":about:about_ui")
     core()
     ui()
     di()

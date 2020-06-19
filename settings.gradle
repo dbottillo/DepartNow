@@ -2,5 +2,5 @@ rootProject.name='ReplaceName'
 
 include ':core', ':domain', ':core_ui', ':domain_ui', ':lint-rules'
 include ':app'
-include ':data_about', ':feature_about' 
-include ':data_home', ':feature_home' 
+include ':about:about_data', ':about:about_ui'
+include ':home:home_data', ':home:home_ui'
