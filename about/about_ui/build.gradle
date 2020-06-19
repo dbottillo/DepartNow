@@ -2,8 +2,8 @@ apply plugin: 'com.android.library'
 apply from: "$rootDir/config-android.gradle"
 
 dependencies {
-    implementation project(':core_ui')
-    implementation project(':domain_ui')
+    implementation project(':core:core_ui')
+    implementation project(':domain:domain_ui')
     implementation project(':about:about_data')
 
     core()

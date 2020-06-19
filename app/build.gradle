@@ -29,7 +29,7 @@ android {
 }
 
 dependencies {
-    implementation project(":domain_ui")
+    implementation project(":domain:domain_ui")
     implementation project(":home:home_ui")
     implementation project(":about:about_ui")
     core()

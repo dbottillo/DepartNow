@@ -1,8 +1,8 @@
 apply plugin: 'com.android.library'
-apply from: '../config-android.gradle'
+apply from: "$rootDir/config-android.gradle"
 
 dependencies {
-    implementation project(':core')
+    implementation project(':core:core_data')
 
     core()
     di()
