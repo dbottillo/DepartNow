@@ -1,0 +1,12 @@
+apply plugin: 'java-library'
+apply from: "$rootDir/config-common.gradle"
+
+dependencies {
+    implementation project(':core:core_data')
+    implementation project(':domain:domain_data')
+
+    core()
+    di()
+
+    test()
+}

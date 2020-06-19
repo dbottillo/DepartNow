@@ -42,6 +42,7 @@ spotless {
 subprojects {
     apply plugin: 'io.gitlab.arturbosch.detekt'
     detekt {
+        config = files("$rootDir/config/detekt-config.yml")
         reports {
             html {
                 enabled = true
