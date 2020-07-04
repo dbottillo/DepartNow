@@ -1,4 +1,9 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+ext.engBuild = (project.findProperty('engBuild') ?: 'true').toBoolean()
+
+if (engBuild) {
+    println("eng build pattern on!")
+}
 
 buildscript {
     repositories {

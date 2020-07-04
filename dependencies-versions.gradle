@@ -13,10 +13,10 @@ ext.versions = [
                 'recyclerview': '1.1.0',
                 'compat': '1.1.0',
                 'preference': '1.1.1',
-                'navigation': '2.2.2'
+                'navigation': '2.3.0'
         ],
         'material'         : '1.1.0',
-        'dagger'           : '2.27',
+        'dagger'           : '2.28.1',
         'glide'            : '4.11.0',
         'crashlytics'      : '2.10.1',
         'constraint_layout': '1.1.3',
