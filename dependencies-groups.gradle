@@ -16,10 +16,8 @@ ext {
         implementation deps.google.androidx.design
     }
     di = Group {
-        implementation deps.dagger.core
-        implementation deps.dagger.androidSupport
-        kapt deps.dagger.compiler
-        kapt deps.dagger.processor
+        implementation deps.dagger.hiltAndroid
+        kapt deps.dagger.hiltCompiler
     }
     ui = Group {
         implementation deps.google.androidx.cardview

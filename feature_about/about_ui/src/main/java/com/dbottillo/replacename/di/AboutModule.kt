@@ -1,6 +1,9 @@
 package com.dbottillo.replacename.di
 
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 
-@Module(subcomponents = [AboutComponent::class])
+@Module
+@InstallIn(ActivityComponent::class)
 class AboutModule
