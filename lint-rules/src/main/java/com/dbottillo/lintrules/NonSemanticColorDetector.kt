@@ -12,9 +12,10 @@ class NonSemanticColorDetector : ResourceXmlDetector() {
     override fun visitAttribute(context: XmlContext, attribute: Attr) {
         if (checkName(attribute.value)) {
             context.report(
-                    NON_SEMANTIC_COLOR_ISSUE,
-                    context.getLocation(attribute),
-                    NON_SEMANTIC_COLOR_ISSUE.getExplanation(TextFormat.RAW))
+                NON_SEMANTIC_COLOR_ISSUE,
+                context.getLocation(attribute),
+                NON_SEMANTIC_COLOR_ISSUE.getExplanation(TextFormat.RAW)
+            )
         }
     }
 
@@ -26,4 +27,5 @@ class NonSemanticColorDetector : ResourceXmlDetector() {
 }
 
 private val NON_SEMANTIC_COLORS = listOf(
-        "black", "blue", "green", "orange", "teal", "white", "orange", "red")
+    "black", "blue", "green", "orange", "teal", "white", "orange", "red"
+)

@@ -13,9 +13,10 @@ class DirectColorDetector : ResourceXmlDetector() {
     override fun visitAttribute(context: XmlContext, attribute: Attr) {
         if (attribute.value.startsWith("#") && attribute.ownerElement.tagName != "vector") {
             context.report(
-                    DIRECT_COLOR_ISSUE,
-                    context.getLocation(attribute),
-                    DIRECT_COLOR_ISSUE.getExplanation(TextFormat.RAW))
+                DIRECT_COLOR_ISSUE,
+                context.getLocation(attribute),
+                DIRECT_COLOR_ISSUE.getExplanation(TextFormat.RAW)
+            )
         }
     }
 }

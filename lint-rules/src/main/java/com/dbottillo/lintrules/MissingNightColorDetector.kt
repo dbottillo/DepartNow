@@ -25,9 +25,9 @@ class MissingNightColorDetector : ResourceXmlDetector() {
         regularColors.forEach { (color, location) ->
             if (!nightModeColors.contains(color))
                 context.report(
-                        MISSING_NIGHT_COLOR_ISSUE,
-                        location,
-                        MISSING_NIGHT_COLOR_ISSUE.getExplanation(TextFormat.RAW)
+                    MISSING_NIGHT_COLOR_ISSUE,
+                    location,
+                    MISSING_NIGHT_COLOR_ISSUE.getExplanation(TextFormat.RAW)
                 )
         }
     }

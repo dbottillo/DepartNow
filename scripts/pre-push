@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Copy to .git/hooks in the project root
+# E.g. cp pre-push ../.git/hooks/ && chmod +x ../.git/hooks/pre-push
+
+sh scripts/ktlint.sh
+
+RESULT=$?
+if [ $RESULT -ne 0 ]; then
+ echo "Ktlint error. Run sh scripts/ktlint.sh -F to apply fixes"
+ exit 1
+fi
+
+sh scripts/detekt.sh
+
+RESULT=$?
+if [ $RESULT -ne 0 ]; then
+ echo "Detekt Errors. Run sh scripts/detekt_baseline.sh -F to add errors to baseline"
+ exit 1
+fi
+exit 0

@@ -17,10 +17,6 @@ buildscript {
     }
 }
 
-plugins {
-    id "io.gitlab.arturbosch.detekt" version "1.9.1"
-}
-
 allprojects {
     repositories {
         google()
@@ -29,27 +25,6 @@ allprojects {
     }
 
     dependencies { apply from: "$rootProject.rootDir/dependencies-groups.gradle" }
-}
-
-apply plugin: 'com.diffplug.gradle.spotless'
-spotless {
-    kotlin {
-        target 'src/**/*.kt'
-    }
-}
-
-
-subprojects {
-    apply plugin: 'io.gitlab.arturbosch.detekt'
-    detekt {
-        config = files("$rootDir/config/detekt-config.yml")
-        reports {
-            html {
-                enabled = true
-                destination = file("$projectDir/build/detekt.html")
-            }
-        }
-    }
 }
 
 apply plugin: 'com.github.ben-manes.versions'
@@ -65,3 +40,5 @@ dependencyUpdates.resolutionStrategy = {
         }
     }
 }
+
+apply from: 'githooks.gradle'
