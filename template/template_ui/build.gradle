@@ -4,7 +4,7 @@ apply from: "$rootDir/config-android.gradle"
 dependencies {
     implementation project(':core:core_ui')
     implementation project(':domain:domain_ui')
-    implementation project(':{FEATURE_NAME}:{FEATURE_NAME}_data')
+    implementation project(':feature_{FEATURE_NAME}:{FEATURE_NAME}_data')
 
     core()
     ui()
