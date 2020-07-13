@@ -48,7 +48,9 @@ ext {
         debugImplementation deps.leakCanary
     }
     test = Group {
-        testImplementation deps.junit
+        testImplementation deps.junit5Implementation
+        testImplementation deps.junit5Runtime
+        testImplementation deps.junit5Params
         testImplementation deps.mockito.core
         testImplementation deps.mockito.kotlin
         testImplementation deps.hamcrest

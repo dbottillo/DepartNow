@@ -53,7 +53,9 @@ ext.deps = [
         'gson': "com.google.code.gson:gson:$versions.gson",
         'leakCanary': "com.squareup.leakcanary:leakcanary-android:$versions.leak_canary",
         'leakCanaryNoOp': "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leak_canary",
-        'junit': "junit:junit:$versions.junit",
+        'junit5Implementation': "org.junit.jupiter:junit-jupiter-api:$versions.junit",
+        'junit5Runtime': "org.junit.jupiter:junit-jupiter-engine:$versions.junit",
+        'junit5Params': "org.junit.jupiter:junit-jupiter-params:$versions.junit",
         'hamcrest': "org.hamcrest:hamcrest-library:$versions.hamcrest",
         'mockito':[
                 'core': "org.mockito:mockito-core:$versions.mockito",
