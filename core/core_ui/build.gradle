@@ -2,11 +2,12 @@ apply plugin: 'com.android.library'
 apply from: "$rootDir/config-android.gradle"
 
 dependencies {
-    implementation project(':core:core_data')
+    api project(':core:core_data')
 
     core()
     di()
     ui()
+    lifecycle()
 
     test()
 }

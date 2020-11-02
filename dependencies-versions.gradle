@@ -5,6 +5,7 @@ ext.versions = [
 
         // kotlin
         'kotlin'           : '1.4.10',
+        'coroutines'       : '1.4.0',
 
         // google
         'androidx'         : [
@@ -13,10 +14,12 @@ ext.versions = [
                 'recyclerview': '1.1.0',
                 'compat': '1.2.0',
                 'preference': '1.1.1',
-                'navigation': '2.3.1'
+                'navigation': '2.3.1',
+                'lifecycle': '2.2.0'
         ],
         'material'         : '1.2.1',
         'dagger'           : '2.28-alpha',
+        'hilt'             : '1.0.0-alpha01',
         'glide'            : '4.11.0',
         'crashlytics'      : '2.10.1',
         'constraint_layout': '2.0.4',
@@ -34,8 +37,6 @@ ext.versions = [
         // 3rd-party
         'leak_canary'      : '2.3',
         'gson'             : '2.8.6',
-        'rx_java'          : '2.2.20',
-        'rx_android'       : '2.1.1',
 
         // testing
         'espresso'         : '3.2.0',
