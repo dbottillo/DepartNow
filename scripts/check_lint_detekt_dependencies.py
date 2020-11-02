@@ -6,13 +6,15 @@ import requests
 def check_detekt_version(currentversion):
     r = requests.get('https://api.github.com/repos/detekt/detekt/releases/latest')
     latest_version = r.json()['tag_name']
-    print("Detekt: " + currentversion + " -> " + latest_version)
+    if currentversion != latest_version:
+        print("Detekt: " + currentversion + " -> " + latest_version)
 
 
 def check_ktlint_version(currentversion):
     r = requests.get('https://api.github.com/repos/pinterest/ktlint/releases/latest')
     latest_version = r.json()['tag_name']
-    print("Ktlint: " + currentversion + " -> " + latest_version)
+    if currentversion != latest_version:
+        print("Ktlint: " + currentversion + " -> " + latest_version)
 
 
 def check_detekt_or_ktlint(filename):
