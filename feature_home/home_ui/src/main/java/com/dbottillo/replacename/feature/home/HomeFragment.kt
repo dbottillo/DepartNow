@@ -44,7 +44,7 @@ class HomeFragment : Fragment() {
                 when (it) {
                     is Lce.Loading -> {}
                     is Lce.Data -> {
-                        view?.findViewById<TextView>(R.id.textview_first)?.text = it.data
+                        view?.findViewById<TextView>(R.id.textview_first)?.text = it.data.title
                     }
                     is Lce.Error -> {}
                 }

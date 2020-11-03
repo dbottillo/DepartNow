@@ -4,6 +4,7 @@ apply from: "$rootDir/config-common.gradle"
 dependencies {
     core()
     di()
+    network()
 
     test()
 }

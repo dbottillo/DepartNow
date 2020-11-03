@@ -26,8 +26,7 @@ ext.versions = [
         'firebase'         : '17.4.2',
         'retrofit'         : [
                 'core'         : '2.9.0',
-                'gsonConverter': '2.9.0',
-                'rxjava'       : '2.9.0'
+                'gsonConverter': '2.9.0'
         ],
         'okhttp'           : [
                 'core'   : '4.7.2',

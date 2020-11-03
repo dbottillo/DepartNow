@@ -36,6 +36,7 @@ dependencies {
     core()
     ui()
     di()
+    network()
 
     test()
 
