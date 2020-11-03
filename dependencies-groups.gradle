@@ -60,8 +60,10 @@ ext {
         testImplementation deps.junit5Params
         testImplementation deps.mockito.core
         testImplementation deps.mockito.kotlin
+        testImplementation deps.mockito.inline
         testImplementation deps.hamcrest
         testImplementation deps.truth
+        testImplementation deps.coroutines.test
         lintChecks project(":lint-rules")
     }
     robolectric = Group {

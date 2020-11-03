@@ -47,7 +47,8 @@ ext.deps = [
         ],
         'coroutines': [
                 'core': "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines",
-                'android': "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
+                'android': "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines",
+                'test': "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutines"
         ],
         'okhttp': [
                 'core': "com.squareup.okhttp3:okhttp:$versions.okhttp.core",
@@ -70,6 +71,7 @@ ext.deps = [
                 'core': "org.mockito:mockito-core:$versions.mockito",
                 'kotlin': "com.nhaarman:mockito-kotlin:$versions.mockito_kotlin",
                 'android': "org.mockito:mockito-android:$versions.mockito_android",
+                'inline': "org.mockito:mockito-inline:$versions.mockito"
         ],
         'robolectric': "org.robolectric:robolectric:$versions.robolectric",
         'truth': "com.google.truth:truth:$versions.truth"
