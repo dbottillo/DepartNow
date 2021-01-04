@@ -1,1 +1,1 @@
-./binary/ktlint_0.39.0 $1 '**/src/**/*.kt' '!.*' '!scripts' '!**/build'
+./binary/ktlint_0.40.0 $1 '**/src/**/*.kt' '!.*' '!scripts' '!**/build'
