@@ -1,10 +1,10 @@
 ext.versions = [
         // plugins
-        'androidGradlePlugin': '4.1.1',
+        'androidGradlePlugin': '4.1.2',
         'gradleVersionsPlugin': '0.36.0',
 
         // kotlin
-        'kotlin'           : '1.4.20',
+        'kotlin'           : '1.4.21-2',
         'coroutines'       : '1.4.2',
 
         // google
@@ -39,7 +39,7 @@ ext.versions = [
 
         // testing
         'espresso'         : '3.2.0',
-        'mockito'          : '3.6.28',
+        'mockito'          : '3.7.7',
         'mockito_kotlin'   : '1.6.0',
         'mockito_android'  : '3.0.0',
         'junit'            : '5.7.0',
@@ -48,6 +48,6 @@ ext.versions = [
         'support_runner'   : '1.2.0',
         'dexmaker_mockito' : '1.2',
         'robolectric'      : '4.3.1',
-        'truth'            : '1.1',
-        'lint'             : '27.1.1'
+        'truth'            : '1.1.2',
+        'lint'             : '27.1.2'
 ]
