@@ -13,6 +13,7 @@ dependencies {
 
     core()
     di()
+    ui()
     lifecycle()
 
     test()
