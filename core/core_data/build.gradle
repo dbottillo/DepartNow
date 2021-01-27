@@ -1,9 +1,0 @@
-apply plugin: 'java-library'
-apply from: "$rootDir/config-common.gradle"
-
-dependencies {
-    core()
-    di()
-
-    test()
-}
