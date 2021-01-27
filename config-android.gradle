@@ -1,6 +1,9 @@
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
+apply from: "$rootDir/dependencies-groups.gradle"
+apply from: "$rootDir/dependencies-versions.gradle"
+apply from: "$rootDir/dependencies-all.gradle"
 
 android {
     compileSdkVersion 29
