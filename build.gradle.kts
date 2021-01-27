@@ -7,10 +7,10 @@ buildscript {
 
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.1.2")
-        classpath("com.github.ben-manes:gradle-versions-plugin:0.36.0")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.21-2")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:2.28-alpha")
+        classpath("com.android.tools.build:gradle:${Versions.androidGradlePlugin}")
+        classpath("com.github.ben-manes:gradle-versions-plugin:${Versions.gradlePlugin}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:${Versions.dagger}")
     }
 }
 
