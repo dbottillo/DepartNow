@@ -9,7 +9,9 @@ kapt {
 }
 
 dependencies {
+    core()
     di()
+    network()
 
     test()
     lintChecks(project(":lint-rules"))

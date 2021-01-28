@@ -37,7 +37,7 @@ fun DependencyHandler.core() {
     }
 }
 
-fun DependencyHandler.dagger() {
+fun DependencyHandler.di() {
     add("implementation", "com.google.dagger:hilt-android:${Versions.dagger}")
     add("kapt", "com.google.dagger:hilt-android-compiler:${Versions.dagger}")
 }
@@ -46,4 +46,11 @@ fun DependencyHandler.test() {
     Config.Libs.test.forEach { dependency ->
         add("testImplementation", dependency)
     }
+}
+
+fun DependencyHandler.network() {
+    add("implementation", "com.squareup.okhttp3:okhttp:${Versions.OkHttp.core}")
+    add("implementation", "com.squareup.okhttp3:logging-interceptor:${Versions.OkHttp.logging}")
+    add("implementation", "com.squareup.retrofit2:retrofit:${Versions.Retrofit.core}")
+    add("implementation", "com.squareup.retrofit2:converter-gson:${Versions.Retrofit.gsonConverter}")
 }
