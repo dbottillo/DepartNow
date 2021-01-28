@@ -3,7 +3,7 @@ object Versions {
     const val gradlePlugin = "0.36.0"
     const val androidGradlePlugin = "4.1.2"
 
-    const val kotlin = "1.4.0"
+    const val kotlin = "1.4.20"
     const val coroutines = "1.4.2"
 
     object AndroidX {
