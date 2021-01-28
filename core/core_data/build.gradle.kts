@@ -1,9 +1,11 @@
 plugins {
-    id("java-library")
     id("kotlin")
     kotlin("kapt")
-    id("com.android.lint")
     id("common-precompiled")
+}
+
+kapt {
+    useBuildCache = true
 }
 
 dependencies {

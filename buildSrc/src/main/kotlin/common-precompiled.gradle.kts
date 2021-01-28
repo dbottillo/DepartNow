@@ -1,3 +1,8 @@
+plugins {
+    id("java-library")
+    id("com.android.lint")
+}
+
 dependencies{
     core()
 }
