@@ -30,7 +30,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 
     packagingOptions {
         exclude("LICENSE.txt")
@@ -58,6 +61,10 @@ kapt {
 dependencies {
     core()
     di()
+    ui()
+    lifecycle()
+
+    test()
 }
 
 task("devTest") {

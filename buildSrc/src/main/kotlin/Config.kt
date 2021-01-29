@@ -25,7 +25,8 @@ object Config {
     }
 
     object Android {
-        const val compileSdk = 23
+        const val applicationId = "com.dbottillo.replacename"
+        const val compileSdk = 29
         const val buildTools = "29.0.2"
         const val minSDk = 23
         const val targetSdk = 29
@@ -65,9 +66,9 @@ fun DependencyHandler.network() {
 }
 
 fun DependencyHandler.ui() {
-    add("implementation", "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}")
     add("implementation", "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hilt}")
-    add("kapt", "com.google.dagger:hilt-android-compiler:${Versions.dagger}")
+    add("kapt", "androidx.hilt:hilt-compiler:${Versions.hilt}")
+    add("implementation", "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}")
     add("implementation", "androidx.appcompat:appcompat:${Versions.AndroidX.compat}")
     add("implementation", "androidx.cardview:cardview:${Versions.AndroidX.cardview}")
     add("implementation", "androidx.recyclerview:recyclerview:${Versions.AndroidX.recyclerview}")
@@ -75,7 +76,7 @@ fun DependencyHandler.ui() {
     add("implementation", "androidx.constraintlayout:constraintlayout:${Versions.constraint_layout}")
     add("implementation", "androidx.preference:preference:${Versions.AndroidX.preference}")
     add("implementation", "androidx.navigation:navigation-fragment-ktx:${Versions.AndroidX.navigation}")
-    add("implementation",  "androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.navigation}")
+    add("implementation", "androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.navigation}")
 }
 
 fun DependencyHandler.lifecycle() {
