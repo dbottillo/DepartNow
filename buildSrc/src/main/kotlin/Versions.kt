@@ -1,9 +1,9 @@
 object Versions {
     const val gradle = "4.0.1"
     const val gradlePlugin = "0.36.0"
-    const val androidGradlePlugin = "4.1.2"
+    const val androidGradlePlugin = "4.1.2" // update also build.gradle.kts in buildSrc
 
-    const val kotlin = "1.4.20"
+    const val kotlin = "1.4.20"  // update also build.gradle.kts in buildSrc
     const val coroutines = "1.4.2"
 
     object AndroidX {
@@ -17,7 +17,7 @@ object Versions {
     }
 
     const val material = "1.2.1"
-    const val dagger = "2.28-alpha"
+    const val dagger = "2.28-alpha" // update also build.gradle.kts in buildSrc
 
     const val hilt = "1.0.0-alpha01"
     const val glide = "4.11.0"

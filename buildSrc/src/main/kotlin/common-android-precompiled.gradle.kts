@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
+    id("common-test-precompiled")
 }
 
 android {
@@ -65,16 +66,4 @@ dependencies {
     lifecycle()
 
     test()
-}
-
-task("devTest") {
-    dependsOn("testStagingEnvDebugUnitTest")
-}
-
-task("stagingTest") {
-    dependsOn("testStagingEnvReleaseUnitTest")
-}
-
-task("prodTest") {
-    dependsOn("testProdEnvReleaseUnitTest")
 }
