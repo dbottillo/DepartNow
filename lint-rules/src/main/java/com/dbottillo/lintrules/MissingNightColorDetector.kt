@@ -23,19 +23,21 @@ class MissingNightColorDetector : ResourceXmlDetector() {
 
     override fun afterCheckEachProject(context: Context) {
         regularColors.forEach { (color, location) ->
-            if (!nightModeColors.contains(color))
+            if (!nightModeColors.contains(color)) {
                 context.report(
                     MISSING_NIGHT_COLOR_ISSUE,
                     location,
                     MISSING_NIGHT_COLOR_ISSUE.getExplanation(TextFormat.RAW)
                 )
+            }
         }
     }
 
     override fun visitElement(context: XmlContext, element: Element) {
-        if (context.getFolderConfiguration()!!.isDefault)
+        if (context.getFolderConfiguration()!!.isDefault) {
             regularColors[element.getAttribute("name")] = context.getLocation(element)
-        else if (context.getFolderConfiguration()!!.nightModeQualifier.isValid)
+        } else if (context.getFolderConfiguration()!!.nightModeQualifier.isValid) {
             nightModeColors.add(element.getAttribute("name"))
+        }
     }
 }

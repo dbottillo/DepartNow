@@ -1,4 +1,4 @@
-rootProject.name="ReplaceName"
+rootProject.name = "ReplaceName"
 
 include(":app")
 include(":core:core_data", ":domain:domain_data", ":core:core_ui", ":domain:domain_ui", ":lint-rules")

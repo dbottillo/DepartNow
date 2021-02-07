@@ -27,5 +27,12 @@ class NonSemanticColorDetector : ResourceXmlDetector() {
 }
 
 private val NON_SEMANTIC_COLORS = listOf(
-    "black", "blue", "green", "orange", "teal", "white", "orange", "red"
+    "black",
+    "blue",
+    "green",
+    "orange",
+    "teal",
+    "white",
+    "orange",
+    "red"
 )

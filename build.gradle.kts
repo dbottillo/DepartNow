@@ -1,10 +1,14 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
+plugins {
+    id("org.jlleitschuh.gradle.ktlint") version BuildPluginsVersion.KTLINT
+    id("io.gitlab.arturbosch.detekt") version BuildPluginsVersion.DETEKT
+}
+
 buildscript {
     repositories {
         google()
         jcenter()
-
     }
     dependencies {
         classpath("com.android.tools.build:gradle:${Versions.androidGradlePlugin}")
@@ -26,20 +30,43 @@ if (rootProject.extra.get("engBuild") == "true") {
     println("eng build pattern on!")
 }
 
-apply(plugin = "com.github.ben-manes.versions")
-tasks.named("dependencyUpdates", DependencyUpdatesTask::class.java).configure {
-    resolutionStrategy {
-        componentSelection {
-            all {
-                val rejected = listOf("alpha", "beta", "rc", "atlassian", "m1").any { qualifier ->
-                    candidate.version.toLowerCase().contains(qualifier)
-                }
-                if (rejected) {
-                    reject("Release candidate")
-                }
+apply(from = "githooks.gradle")
+
+subprojects {
+    apply {
+        plugin("io.gitlab.arturbosch.detekt")
+        plugin("org.jlleitschuh.gradle.ktlint")
+    }
+
+    ktlint {
+        debug.set(false)
+        version.set(Versions.ktlint)
+        verbose.set(true)
+        android.set(false)
+        outputToConsole.set(true)
+        ignoreFailures.set(false)
+        enableExperimentalRules.set(true)
+        filter {
+            exclude("**/generated/**")
+            include("**/kotlin/**")
+        }
+    }
+
+    detekt {
+        config = rootProject.files("config/detekt/detekt.yml")
+        reports {
+            html {
+                enabled = true
+                destination = file("build/reports/detekt.html")
             }
         }
     }
 }
 
-apply(from = "githooks.gradle")
+tasks.withType<DependencyUpdatesTask> {
+    rejectVersionIf {
+        isNonStable(candidate.version)
+    }
+}
+
+fun isNonStable(version: String) = "^[0-9,.v-]+(-r)?$".toRegex().matches(version).not()

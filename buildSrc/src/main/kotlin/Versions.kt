@@ -51,4 +51,6 @@ object Versions {
     const val robolectric = "4.3.1"
     const val truth = "1.1.2"
     const val lint = "27.1.2"
+
+    const val ktlint = "0.40.0"
 }
