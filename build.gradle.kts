@@ -31,6 +31,7 @@ if (rootProject.extra.get("engBuild") == "true") {
 }
 
 apply(from = "githooks.gradle")
+apply(plugin = "com.github.ben-manes.versions")
 
 subprojects {
     apply {
