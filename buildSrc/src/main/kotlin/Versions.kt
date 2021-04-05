@@ -12,8 +12,9 @@ object Versions {
         const val recyclerview = "1.1.0"
         const val compat = "1.2.0"
         const val preference = "1.1.1"
-        const val navigation = "2.3.2"
+        const val navigation = "2.3.4"
         const val lifecycle = "2.3.1"
+        const val lifecycleExtensions = "2.2.0"
     }
 
     const val material = "1.3.0"
