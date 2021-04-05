@@ -25,8 +25,9 @@ object Versions {
 
     object Retrofit {
         const val core = "2.9.0"
-        const val gsonConverter = "2.9.0"
+        const val moshi = "2.9.0"
     }
+    const val moshi = "1.11.0"
 
     object OkHttp {
         const val core = "4.9.1"

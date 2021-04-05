@@ -3,13 +3,12 @@ package com.dbottillo.replacename.di
 import com.dbottillo.replacename.ApiInterface
 import com.dbottillo.replacename.Navigator
 import com.dbottillo.replacename.NavigatorImpl
-import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -27,7 +26,7 @@ class AppModule {
     fun provideApiService(): ApiInterface {
         return Retrofit.Builder()
             .baseUrl("https://jsonplaceholder.typicode.com/")
-            .addConverterFactory(GsonConverterFactory.create(Gson()))
+            .addConverterFactory(MoshiConverterFactory.create())
             .build()
             .create(ApiInterface::class.java)
     }

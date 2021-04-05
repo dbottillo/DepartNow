@@ -62,7 +62,9 @@ fun DependencyHandler.network() {
     add("implementation", "com.squareup.okhttp3:okhttp:${Versions.OkHttp.core}")
     add("implementation", "com.squareup.okhttp3:logging-interceptor:${Versions.OkHttp.logging}")
     add("implementation", "com.squareup.retrofit2:retrofit:${Versions.Retrofit.core}")
-    add("implementation", "com.squareup.retrofit2:converter-gson:${Versions.Retrofit.gsonConverter}")
+    add("implementation", "com.squareup.retrofit2:converter-moshi:${Versions.Retrofit.moshi}")
+    add("implementation","com.squareup.moshi:moshi:${Versions.moshi}")
+    add("kapt", "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}")
 }
 
 fun DependencyHandler.ui() {

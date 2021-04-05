@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.dbottillo.replacename.Lce
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,13 +39,15 @@ class HomeFragment : Fragment() {
     private fun setupObservers() {
         viewModel.data.observe(
             viewLifecycleOwner,
-            Observer {
+            {
                 when (it) {
                     is Lce.Loading -> {}
                     is Lce.Data -> {
                         view?.findViewById<TextView>(R.id.textview_first)?.text = it.data.title
                     }
-                    is Lce.Error -> {}
+                    is Lce.Error -> {
+                        view?.findViewById<TextView>(R.id.textview_first)?.text = it.throwable.localizedMessage
+                    }
                 }
             }
         )
