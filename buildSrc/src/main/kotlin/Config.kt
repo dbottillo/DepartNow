@@ -64,7 +64,7 @@ fun DependencyHandler.network() {
 }
 
 fun DependencyHandler.ui() {
-    add("implementation", "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hilt}")
+    add("implementation", "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hiltLifecycleViewModel}")
     add("kapt", "androidx.hilt:hilt-compiler:${Versions.hilt}")
     add("implementation", "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}")
     add("implementation", "androidx.appcompat:appcompat:${Versions.AndroidX.compat}")

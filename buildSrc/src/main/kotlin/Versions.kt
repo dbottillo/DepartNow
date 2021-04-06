@@ -1,6 +1,5 @@
 object Versions {
     const val gradle = "4.0.1"
-    const val gradlePlugin = "0.38.0"
     const val androidGradlePlugin = "4.1.3" // update also build.gradle.kts in buildSrc
 
     const val kotlin = "1.4.32"  // update also build.gradle.kts in buildSrc
@@ -21,19 +20,19 @@ object Versions {
     const val dagger = "2.28-alpha" // update also build.gradle.kts in buildSrc
 
     const val hilt = "1.0.0-alpha01"
+    const val hiltLifecycleViewModel = "1.0.0-alpha01"
     const val constraint_layout = "2.0.4"
 
     object Retrofit {
         const val core = "2.9.0"
         const val moshi = "2.9.0"
     }
-    const val moshi = "1.11.0"
+    const val moshi = "1.12.0"
 
     object OkHttp {
         const val core = "4.9.1"
         const val logging = "4.9.1"
     }
-
 
     // testing
     const val espresso = "3.2.0"
@@ -41,7 +40,6 @@ object Versions {
     const val mockito_kotlin = "3.1.0"
     const val mockito_android = "3.8.0"
     const val junit = "5.7.1"
-    const val hamcrest = "2.2"
     const val robolectric = "4.3.1"
     const val truth = "1.1.2"
     const val lint = "27.1.3"

@@ -9,6 +9,8 @@ repositories {
     jcenter()
 }
 
+kotlinDslPluginOptions.experimentalWarning.set(false)
+
 dependencies {
 
     val kotlin =  "1.4.32"

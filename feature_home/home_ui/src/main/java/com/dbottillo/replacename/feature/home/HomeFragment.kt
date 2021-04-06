@@ -1,5 +1,6 @@
 package com.dbottillo.replacename.feature.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,6 +37,7 @@ class HomeFragment : Fragment() {
         setupObservers()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setupObservers() {
         viewModel.data.observe(
             viewLifecycleOwner,

@@ -3,19 +3,7 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 plugins {
     id("org.jlleitschuh.gradle.ktlint") version BuildPluginsVersion.KTLINT
     id("io.gitlab.arturbosch.detekt") version BuildPluginsVersion.DETEKT
-}
-
-buildscript {
-    repositories {
-        google()
-        jcenter()
-    }
-    dependencies {
-        classpath("com.android.tools.build:gradle:${Versions.androidGradlePlugin}")
-        classpath("com.github.ben-manes:gradle-versions-plugin:${Versions.gradlePlugin}")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:${Versions.dagger}")
-    }
+    id("com.github.ben-manes.versions") version BuildPluginsVersion.VERSIONS_PLUGIN
 }
 
 allprojects {
@@ -64,10 +52,16 @@ subprojects {
     }
 }
 
-tasks.withType<DependencyUpdatesTask> {
-    rejectVersionIf {
-        isNonStable(candidate.version)
+tasks {
+    register("clean", Delete::class.java) {
+        delete(rootProject.buildDir)
+    }
+
+    withType<DependencyUpdatesTask> {
+        rejectVersionIf {
+            candidate.version.isNonStable()
+        }
     }
 }
 
-fun isNonStable(version: String) = "^[0-9,.v-]+(-r)?$".toRegex().matches(version).not()
+fun String.isNonStable(): Boolean = "^[0-9,.v-]+(-r)?$".toRegex().matches(this).not()
