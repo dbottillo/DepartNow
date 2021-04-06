@@ -3,7 +3,6 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("common-dagger-precompiled")
-    id("common-test-precompiled")
 }
 
 android {
@@ -70,4 +69,16 @@ dependencies {
 kapt {
     useBuildCache = true
     correctErrorTypes = true
+}
+
+task("devTest") {
+    dependsOn("testDebugUnitTest")
+}
+
+task("stagingTest") {
+    dependsOn("testDebugUnitTest")
+}
+
+task("prodTest") {
+    dependsOn("testReleaseUnitTest")
 }

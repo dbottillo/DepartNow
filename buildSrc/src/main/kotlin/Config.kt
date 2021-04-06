@@ -9,19 +9,6 @@ object Config {
             "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}",
             "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
         )
-
-        val test = listOf(
-            "org.junit.jupiter:junit-jupiter-api:${Versions.junit}",
-            "org.junit.jupiter:junit-jupiter-engine:${Versions.junit}",
-            "org.junit.jupiter:junit-jupiter-params:${Versions.junit}",
-            "org.mockito:mockito-core:${Versions.mockito}",
-            "com.nhaarman:mockito-kotlin:${Versions.mockito_kotlin}",
-            "org.mockito:mockito-android:${Versions.mockito_android}",
-            "org.mockito:mockito-inline:${Versions.mockito}",
-            "com.google.truth:truth:${Versions.truth}",
-            "org.hamcrest:hamcrest-library:${Versions.hamcrest}",
-            "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
-        )
     }
 
     object Android {
@@ -53,9 +40,18 @@ fun DependencyHandler.di() {
 }
 
 fun DependencyHandler.test() {
-    Config.Libs.test.forEach { dependency ->
-        add("testImplementation", dependency)
-    }
+    add("testImplementation", "org.junit.jupiter:junit-jupiter-api:${Versions.junit}")
+    add("testRuntimeOnly", "org.junit.jupiter:junit-jupiter-engine:${Versions.junit}")
+    add("testImplementation", "org.junit.jupiter:junit-jupiter-params:${Versions.junit}")
+    add("testImplementation", "org.mockito:mockito-core:${Versions.mockito}")
+    add("testImplementation", "org.mockito:mockito-inline:${Versions.mockito}")
+    add("testImplementation", "org.mockito.kotlin:mockito-kotlin:${Versions.mockito_kotlin}")
+    add("testImplementation", "com.google.truth:truth:${Versions.truth}")
+    add("testImplementation", "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}")
+}
+
+fun DependencyHandler.testAndroid() {
+    add("testImplementation", "org.mockito:mockito-android:${Versions.mockito_android}")
 }
 
 fun DependencyHandler.network() {

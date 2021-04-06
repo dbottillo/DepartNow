@@ -3,6 +3,10 @@ plugins {
     id("com.android.lint")
 }
 
+tasks.named<Test>("test") {
+    useJUnitPlatform()
+}
+
 dependencies{
     core()
 }

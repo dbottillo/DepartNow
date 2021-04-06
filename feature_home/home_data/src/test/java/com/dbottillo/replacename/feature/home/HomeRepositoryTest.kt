@@ -4,11 +4,11 @@ import com.dbottillo.replacename.ApiInterface
 import com.dbottillo.replacename.ApiResult
 import com.dbottillo.replacename.Todo
 import com.google.common.truth.Truth.assertThat
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.whenever
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 import retrofit2.Response
 
 class HomeRepositoryTest {

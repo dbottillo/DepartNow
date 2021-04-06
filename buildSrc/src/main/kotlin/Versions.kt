@@ -38,7 +38,7 @@ object Versions {
     // testing
     const val espresso = "3.2.0"
     const val mockito = "3.8.0"
-    const val mockito_kotlin = "1.6.0"
+    const val mockito_kotlin = "3.1.0"
     const val mockito_android = "3.8.0"
     const val junit = "5.7.1"
     const val hamcrest = "2.2"

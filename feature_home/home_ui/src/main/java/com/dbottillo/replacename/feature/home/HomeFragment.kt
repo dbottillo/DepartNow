@@ -41,7 +41,9 @@ class HomeFragment : Fragment() {
             viewLifecycleOwner,
             {
                 when (it) {
-                    is Lce.Loading -> {}
+                    is Lce.Loading -> {
+                        view?.findViewById<TextView>(R.id.textview_first)?.text = "Loading"
+                    }
                     is Lce.Data -> {
                         view?.findViewById<TextView>(R.id.textview_first)?.text = it.data.title
                     }
