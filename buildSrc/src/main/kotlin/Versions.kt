@@ -18,6 +18,7 @@ object Versions {
 
     const val material = "1.3.0"
     const val dagger = "2.35.1" // update also build.gradle.kts in buildSrc
+    const val leakCanary = "2.7"
 
     const val constraint_layout = "2.0.4"
 

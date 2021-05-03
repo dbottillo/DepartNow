@@ -53,6 +53,7 @@ dependencies {
     ui()
     di()
     network()
+    debug()
 
     test()
 

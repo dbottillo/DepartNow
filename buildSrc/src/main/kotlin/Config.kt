@@ -81,3 +81,8 @@ fun DependencyHandler.lifecycle() {
     add("implementation", "androidx.lifecycle:lifecycle-common-java8:${Versions.AndroidX.lifecycle}")
     add("implementation", "androidx.lifecycle:lifecycle-extensions:${Versions.AndroidX.lifecycleExtensions}")
 }
+
+
+fun DependencyHandler.debug(){
+    add("debugImplementation", "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}")
+}
