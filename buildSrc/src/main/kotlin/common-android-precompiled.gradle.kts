@@ -48,6 +48,10 @@ android {
         exclude("META-INF/io.netty.versions.properties")
     }
 
+    variantFilter {
+        ignore = buildType.name == "debug"
+    }
+
     lintOptions {
         xmlReport = false
         lintConfig = file("$rootDir/config/lint/lint.xml")

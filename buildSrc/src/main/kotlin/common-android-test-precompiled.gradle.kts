@@ -1,9 +1,9 @@
 task("devTest") {
-    dependsOn("testDebugUnitTest")
+    dependsOn("testReleaseUnitTest")
 }
 
 task("stagingTest") {
-    dependsOn("testDebugUnitTest")
+    dependsOn("testReleaseUnitTest")
 }
 
 task("prodTest") {
