@@ -3,24 +3,22 @@ object Versions {
     const val androidGradlePlugin = "4.1.3" // update also build.gradle.kts in buildSrc
 
     const val kotlin = "1.4.32"  // update also build.gradle.kts in buildSrc
-    const val coroutines = "1.4.2"
+    const val coroutines = "1.4.3"
 
     object AndroidX {
         const val core = "1.3.2"
         const val cardview = "1.0.0"
-        const val recyclerview = "1.1.0"
+        const val recyclerview = "1.2.0"
         const val compat = "1.2.0"
         const val preference = "1.1.1"
-        const val navigation = "2.3.4"
+        const val navigation = "2.3.5"
         const val lifecycle = "2.3.1"
         const val lifecycleExtensions = "2.2.0"
     }
 
     const val material = "1.3.0"
-    const val dagger = "2.28-alpha" // update also build.gradle.kts in buildSrc
+    const val dagger = "2.35.1" // update also build.gradle.kts in buildSrc
 
-    const val hilt = "1.0.0-alpha01"
-    const val hiltLifecycleViewModel = "1.0.0-alpha01"
     const val constraint_layout = "2.0.4"
 
     object Retrofit {

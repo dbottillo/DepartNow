@@ -9,6 +9,7 @@ tasks.named<Test>("test") {
 
 dependencies{
     core()
+    implementation("javax.inject:javax.inject:1")
 }
 
 task("devTest"){

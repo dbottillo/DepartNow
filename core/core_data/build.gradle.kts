@@ -9,8 +9,6 @@ kapt {
 }
 
 dependencies {
-    di()
-
     test()
     lintChecks(project(":lint-rules"))
 }

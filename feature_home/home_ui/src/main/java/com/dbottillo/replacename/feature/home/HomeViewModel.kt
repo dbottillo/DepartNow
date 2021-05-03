@@ -1,15 +1,17 @@
 package com.dbottillo.replacename.feature.home
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.dbottillo.replacename.ApiResult
 import com.dbottillo.replacename.Lce
 import com.dbottillo.replacename.Todo
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
 
-class HomeViewModel @ViewModelInject constructor(
+@HiltViewModel
+class HomeViewModel @Inject constructor(
     private val repository: HomeRepository
 ) : ViewModel() {
 

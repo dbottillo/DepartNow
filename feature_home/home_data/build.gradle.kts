@@ -13,7 +13,6 @@ dependencies {
     implementation(project(":domain:domain_data"))
 
     core()
-    di()
     network()
 
     test()

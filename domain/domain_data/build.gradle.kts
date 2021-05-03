@@ -10,7 +10,6 @@ kapt {
 
 dependencies {
     core()
-    di()
     network()
 
     test()
