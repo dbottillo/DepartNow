@@ -4,6 +4,7 @@ import com.android.tools.lint.detector.api.TextFormat
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
+@Suppress("MaxLineLength")
 class IssueRegistryTest {
 
     @Test

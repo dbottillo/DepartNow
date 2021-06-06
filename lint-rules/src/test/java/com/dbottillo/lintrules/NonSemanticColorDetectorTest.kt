@@ -4,6 +4,7 @@ import com.android.tools.lint.checks.infrastructure.TestFiles
 import com.android.tools.lint.checks.infrastructure.TestLintTask
 import org.junit.Test
 
+@Suppress("MaxLineLength")
 class NonSemanticColorDetectorTest {
 
     @Test

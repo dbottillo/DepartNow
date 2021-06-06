@@ -4,6 +4,7 @@ import com.android.tools.lint.checks.infrastructure.TestFiles
 import com.android.tools.lint.checks.infrastructure.TestLintTask
 import org.junit.Test
 
+@Suppress("MaxLineLength")
 class DirectColorDetectorTest {
 
     @Test
@@ -47,17 +48,19 @@ class DirectColorDetectorTest {
                 |res/layout/toolbar.xml:6: Error: Avoid direct use of colors in XML files. This will cause issues with different theme (eg. dark) support [DirectColorUse]
                 |                    android:foreground="#667788"
                 |                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                |2 errors, 0 warnings""".trimMargin()
+                |2 errors, 0 warnings"""
+                    .trimMargin()
             )
     }
 
     @Test
     fun `should ignore vector when detecting a direct color`() {
         val contentFile =
-            """<vector android:height="24dp" android:tint="#FFFFFF"
+            """
+            <vector android:height="24dp" android:tint="#FFFFFF"
                 android:viewportHeight="24.0" android:viewportWidth="24.0"
                 android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
-            <path android:fillColor="#FF000000" android:pathData="M15.5,14h-0.79l-0.2"/>
+              <path android:fillColor="#FF000000" android:pathData="M15.5,14h-0.79l-0.2"/>
             </vector>
         """
         TestLintTask.lint()
