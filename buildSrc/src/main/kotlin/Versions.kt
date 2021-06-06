@@ -1,15 +1,15 @@
 object Versions {
     const val gradle = "4.0.1"
-    const val androidGradlePlugin = "4.1.3" // update also build.gradle.kts in buildSrc
+    const val androidGradlePlugin = "4.2.1" // update also build.gradle.kts in buildSrc
 
-    const val kotlin = "1.4.32"  // update also build.gradle.kts in buildSrc
-    const val coroutines = "1.4.3"
+    const val kotlin = "1.5.10"  // update also build.gradle.kts in buildSrc
+    const val coroutines = "1.5.0"
 
     object AndroidX {
         const val core = "1.3.2"
         const val cardview = "1.0.0"
-        const val recyclerview = "1.2.0"
-        const val compat = "1.2.0"
+        const val recyclerview = "1.2.1"
+        const val compat = "1.3.0"
         const val preference = "1.1.1"
         const val navigation = "2.3.5"
         const val lifecycle = "2.3.1"
@@ -17,7 +17,7 @@ object Versions {
     }
 
     const val material = "1.3.0"
-    const val dagger = "2.35.1" // update also build.gradle.kts in buildSrc
+    const val dagger = "2.36" // update also build.gradle.kts in buildSrc
     const val leakCanary = "2.7"
 
     const val constraint_layout = "2.0.4"
@@ -35,13 +35,13 @@ object Versions {
 
     // testing
     const val espresso = "3.2.0"
-    const val mockito = "3.8.0"
-    const val mockito_kotlin = "3.1.0"
+    const val mockito = "3.11.0"
+    const val mockito_kotlin = "3.2.0"
     const val mockito_android = "3.8.0"
-    const val junit = "5.7.1"
+    const val junit = "5.7.2"
     const val robolectric = "4.3.1"
-    const val truth = "1.1.2"
-    const val lint = "27.1.3"
+    const val truth = "1.1.3"
+    const val lint = "27.2.1"
 
-    const val ktlint = "0.40.0"
+    const val ktlint = "0.41.0"
 }

@@ -9,7 +9,7 @@ plugins {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
     extra.set("engBuild", project.findProperty("engBuild") ?: "true")
 }
@@ -60,6 +60,12 @@ tasks {
     withType<DependencyUpdatesTask> {
         rejectVersionIf {
             candidate.version.isNonStable()
+        }
+    }
+
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = "1.8"
         }
     }
 }
