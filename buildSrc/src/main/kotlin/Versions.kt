@@ -6,7 +6,7 @@ object Versions {
     const val coroutines = "1.5.0"
 
     object AndroidX {
-        const val core = "1.3.2"
+        const val core = "1.5.0"
         const val cardview = "1.0.0"
         const val recyclerview = "1.2.1"
         const val compat = "1.3.0"

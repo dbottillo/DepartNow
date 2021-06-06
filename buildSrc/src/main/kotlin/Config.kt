@@ -3,8 +3,6 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 object Config {
     object Libs {
         val core = listOf(
-            "androidx.core:core:${Versions.AndroidX.core}",
-            "androidx.core:core-ktx:${Versions.AndroidX.core}",
             "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}",
             "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}",
             "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
@@ -64,6 +62,8 @@ fun DependencyHandler.network() {
 }
 
 fun DependencyHandler.ui() {
+    add("implementation", "androidx.core:core:${Versions.AndroidX.core}")
+    add("implementation", "androidx.core:core-ktx:${Versions.AndroidX.core}")
     add("implementation", "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}")
     add("implementation", "androidx.appcompat:appcompat:${Versions.AndroidX.compat}")
     add("implementation", "androidx.cardview:cardview:${Versions.AndroidX.cardview}")
