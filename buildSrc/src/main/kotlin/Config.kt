@@ -76,6 +76,7 @@ fun DependencyHandler.ui() {
 }
 
 fun DependencyHandler.lifecycle() {
+    add("implementation", "androidx.lifecycle:lifecycle-runtime:${Versions.AndroidX.lifecycle}")
     add("implementation", "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidX.lifecycle}")
     add("implementation", "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.AndroidX.lifecycle}")
     add("implementation", "androidx.lifecycle:lifecycle-common-java8:${Versions.AndroidX.lifecycle}")
