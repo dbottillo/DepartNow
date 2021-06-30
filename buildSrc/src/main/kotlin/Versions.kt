@@ -2,7 +2,7 @@ object Versions {
     const val gradle = "4.0.1"
     const val androidGradlePlugin = "4.2.1" // update also build.gradle.kts in buildSrc
 
-    const val kotlin = "1.5.10"  // update also build.gradle.kts in buildSrc
+    const val kotlin = "1.5.20"  // update also build.gradle.kts in buildSrc
     const val coroutines = "1.5.0"
 
     object AndroidX {
@@ -17,7 +17,7 @@ object Versions {
     }
 
     const val material = "1.3.0"
-    const val dagger = "2.36" // update also build.gradle.kts in buildSrc
+    const val dagger = "2.37" // update also build.gradle.kts in buildSrc
     const val leakCanary = "2.7"
 
     const val constraint_layout = "2.0.4"
@@ -35,7 +35,7 @@ object Versions {
 
     // testing
     const val espresso = "3.2.0"
-    const val mockito = "3.11.0"
+    const val mockito = "3.11.2"
     const val mockito_kotlin = "3.2.0"
     const val mockito_android = "3.8.0"
     const val junit = "5.7.2"

@@ -6,16 +6,13 @@ plugins {
 repositories {
     google()
     mavenCentral()
-    jcenter()
 }
-
-kotlinDslPluginOptions.experimentalWarning.set(false)
 
 dependencies {
 
-    val kotlin =  "1.5.10"
+    val kotlin =  "1.5.20"
     val androidGradlePlugin =  "4.2.1"
-    val dagger =  "2.36"
+    val dagger =  "2.37"
 
     implementation("com.android.tools.build:gradle:$androidGradlePlugin")
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin")
