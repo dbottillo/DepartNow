@@ -1,6 +1,6 @@
 object Versions {
     const val gradle = "4.0.1"
-    const val androidGradlePlugin = "4.2.1" // update also build.gradle.kts in buildSrc
+    const val androidGradlePlugin = "7.0.0" // update also build.gradle.kts in buildSrc
 
     const val kotlin = "1.5.21"  // update also build.gradle.kts in buildSrc
     const val coroutines = "1.5.1"
@@ -41,7 +41,7 @@ object Versions {
     const val junit = "5.7.2"
     const val robolectric = "4.3.1"
     const val truth = "1.1.3"
-    const val lint = "27.2.2"
+    const val lint = "30.0.0"
 
     const val ktlint = "0.42.0"
 }

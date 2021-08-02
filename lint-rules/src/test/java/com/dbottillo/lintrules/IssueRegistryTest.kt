@@ -1,5 +1,6 @@
 package com.dbottillo.lintrules
 
+import com.android.tools.lint.client.api.LintClient
 import com.android.tools.lint.detector.api.TextFormat
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
@@ -9,6 +10,7 @@ class IssueRegistryTest {
 
     @Test
     fun `check explanation for issues is correct`() {
+        LintClient.clientName = "TEST Client"
         val output = IssueRegistry().issues
             .joinToString(separator = "\n") { "- **${it.id}** - ${it.getExplanation(TextFormat.RAW)}" }
 

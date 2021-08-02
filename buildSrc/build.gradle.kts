@@ -11,7 +11,7 @@ repositories {
 dependencies {
 
     val kotlin =  "1.5.21"
-    val androidGradlePlugin = "4.2.2"
+    val androidGradlePlugin =  "7.0.0"
     val dagger =  "2.38.1"
 
     implementation("com.android.tools.build:gradle:$androidGradlePlugin")

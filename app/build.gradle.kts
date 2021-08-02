@@ -6,15 +6,15 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Config.Android.compileSdk)
-    buildToolsVersion(Config.Android.buildTools)
+    compileSdk = Config.Android.compileSdk
+    buildToolsVersion = Config.Android.buildTools
 
     defaultConfig {
-        applicationId(Config.Android.applicationId)
-        minSdkVersion(Config.Android.minSDk)
-        targetSdkVersion(Config.Android.targetSdk)
-        versionCode(Config.Android.versionCode)
-        versionName(Config.Android.versionName)
+        applicationId = Config.Android.applicationId
+        minSdk = Config.Android.minSDk
+        targetSdk = Config.Android.targetSdk
+        versionCode = Config.Android.versionCode
+        versionName = Config.Android.versionName
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -30,12 +30,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 
     lintOptions {

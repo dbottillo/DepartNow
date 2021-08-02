@@ -6,14 +6,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Config.Android.compileSdk)
-    buildToolsVersion(Config.Android.buildTools)
+    compileSdk = Config.Android.compileSdk
 
     defaultConfig {
-        minSdkVersion(Config.Android.minSDk)
-        targetSdkVersion(Config.Android.targetSdk)
-        versionCode(Config.Android.versionCode)
-        versionName(Config.Android.versionName)
+        minSdk = Config.Android.minSDk
+        targetSdk = Config.Android.targetSdk
         // this is still required to avoid generating PNGs even if min sdk is 21
         vectorDrawables.useSupportLibrary = true
     }
@@ -28,33 +25,35 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 
     packagingOptions {
-        exclude("LICENSE.txt")
-        exclude("META-INF/LICENSE.txt")
-        exclude("META-INF/NOTICE.txt")
-        exclude("META-INF/LICENSE")
-        exclude("META-INF/NOTICE")
-        exclude("META-INF/INDEX.LIST")
-        exclude("META-INF/services/javax.annotation.processing.Processor")
-        exclude("META-INF/rxjava.properties")
-        exclude("META-INF/io.netty.versions.properties")
+        resources.excludes.add("LICENSE.txt")
+        resources.excludes.add("LICENSE.txt")
+        resources.excludes.add("META-INF/LICENSE.txt")
+        resources.excludes.add("META-INF/NOTICE.txt")
+        resources.excludes.add("META-INF/LICENSE")
+        resources.excludes.add("META-INF/NOTICE")
+        resources.excludes.add("META-INF/INDEX.LIST")
+        resources.excludes.add("META-INF/services/javax.annotation.processing.Processor")
+        resources.excludes.add("META-INF/rxjava.properties")
+        resources.excludes.add("META-INF/io.netty.versions.properties")
     }
 
     variantFilter {
         ignore = buildType.name == "debug"
     }
 
-    lintOptions {
+    lint {
         xmlReport = false
         lintConfig = file("$rootDir/config/lint/lint.xml")
+        isCheckDependencies = true
     }
 }
 

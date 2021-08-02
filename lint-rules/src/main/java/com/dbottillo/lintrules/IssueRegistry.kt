@@ -8,6 +8,7 @@ import com.android.tools.lint.detector.api.Scope
 import com.android.tools.lint.detector.api.Severity
 
 class IssueRegistry : IssueRegistry() {
+
     override val issues: List<Issue>
         get() = listOf(DIRECT_COLOR_ISSUE, MISSING_NIGHT_COLOR_ISSUE, NON_SEMANTIC_COLOR_ISSUE)
 
