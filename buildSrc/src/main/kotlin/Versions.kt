@@ -17,10 +17,10 @@ object Versions {
     }
 
     const val material = "1.4.0"
-    const val dagger = "2.38" // update also build.gradle.kts in buildSrc
+    const val dagger = "2.38.1" // update also build.gradle.kts in buildSrc
     const val leakCanary = "2.7"
 
-    const val constraint_layout = "2.0.4"
+    const val constraint_layout = "2.1.0"
 
     object Retrofit {
         const val core = "2.9.0"
@@ -43,5 +43,5 @@ object Versions {
     const val truth = "1.1.3"
     const val lint = "27.2.2"
 
-    const val ktlint = "0.41.0"
+    const val ktlint = "0.42.0"
 }
