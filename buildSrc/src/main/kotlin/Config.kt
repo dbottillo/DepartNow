@@ -48,6 +48,22 @@ fun DependencyHandler.test() {
     add("testImplementation", "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}")
 }
 
+fun DependencyHandler.uiTest() {
+    add("androidTestImplementation", "androidx.test:runner:${Versions.Testing.support_runner}")
+    add("androidTestImplementation", "androidx.test:rules:${Versions.Testing.support_runner}")
+    add("androidTestImplementation", "androidx.test.espresso:espresso-core:${Versions.Testing.espresso}")
+    add("androidTestImplementation", "androidx.test.espresso:espresso-web:${Versions.Testing.espresso}")
+    add("androidTestImplementation", "androidx.test.espresso:espresso-intents:${Versions.Testing.espresso}")
+    add("androidTestImplementation", "org.mockito:mockito-android:${Versions.mockito}")
+    add("androidTestImplementation", "androidx.test:core-ktx:${Versions.Testing.core_ktx}")
+    add("androidTestImplementation", "androidx.test.ext:junit-ktx:${Versions.Testing.junit_ktx}")
+    add("androidTestImplementation", "com.google.dagger:hilt-android-testing:${Versions.dagger}")
+    add("kaptAndroidTest", "com.google.dagger:hilt-android-compiler:${Versions.dagger}")
+    add("androidTestImplementation", "com.google.truth:truth:${Versions.truth}")
+    add("androidTestImplementation", "com.squareup.okhttp3:mockwebserver:${Versions.OkHttp.core}")
+    add("androidTestImplementation", "com.jakewharton.espresso:okhttp3-idling-resource:${Versions.Testing.okhttp3_idling_resource}")
+}
+
 fun DependencyHandler.testAndroid() {
     add("testImplementation", "org.mockito:mockito-android:${Versions.mockito_android}")
 }

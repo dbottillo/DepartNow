@@ -33,8 +33,15 @@ object Versions {
         const val logging = "4.9.2"
     }
 
+    object Testing {
+        const val espresso = "3.2.0"
+        const val support_runner = "1.4.0" // https://github.com/android/android-test/releases
+        const val core_ktx = "1.4.0" // https://github.com/android/android-test/releases
+        const val junit_ktx = "1.1.3" // https://github.com/android/android-test/releases
+        const val okhttp3_idling_resource = "1.0.0"
+    }
+
     // testing
-    const val espresso = "3.2.0"
     const val mockito = "3.12.4"
     const val mockito_kotlin = "3.2.0"
     const val mockito_android = "3.8.0"
@@ -42,6 +49,4 @@ object Versions {
     const val robolectric = "4.3.1"
     const val truth = "1.1.3"
     const val lint = "30.0.2"
-
-    const val ktlint = "0.42.0"
 }

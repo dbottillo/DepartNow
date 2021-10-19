@@ -11,8 +11,10 @@
     <ID>InvalidPackageDeclaration:common-dagger-precompiled.gradle.kts$.common-dagger-precompiled.gradle.kts</ID>
     <ID>InvalidPackageDeclaration:common-precompiled.gradle.kts$.common-precompiled.gradle.kts</ID>
     <ID>InvalidPackageDeclaration:settings.gradle.kts$.settings.gradle.kts</ID>
+    <ID>StringLiteralDuplication:Config.kt$"androidTestImplementation"</ID>
     <ID>StringLiteralDuplication:Config.kt$"implementation"</ID>
     <ID>StringLiteralDuplication:Config.kt$"testImplementation"</ID>
+    <ID>StringLiteralDuplication:Versions.kt$Versions$"1.4.0"</ID>
     <ID>StringLiteralDuplication:build.gradle.kts$"engBuild"</ID>
     <ID>StringLiteralDuplication:common-android-test-precompiled.gradle.kts$"testReleaseUnitTest"</ID>
   </CurrentIssues>

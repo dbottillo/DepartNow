@@ -13,6 +13,7 @@ android {
         targetSdk = Config.Android.targetSdk
         // this is still required to avoid generating PNGs even if min sdk is 21
         vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures {
@@ -69,4 +70,5 @@ dependencies {
     lifecycle()
 
     test()
+    uiTest()
 }

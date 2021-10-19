@@ -1,6 +1,6 @@
 # Welcome !
 
-add detekt, ktlint and pre-push hook section
+add detekt and pre-push hook section
 
 ## Code analysys
 
