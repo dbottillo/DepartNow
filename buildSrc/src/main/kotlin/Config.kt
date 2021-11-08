@@ -11,10 +11,10 @@ object Config {
 
     object Android {
         const val applicationId = "com.dbottillo.replacename"
-        const val compileSdk = 30
-        const val buildTools = "30.0.3"
+        const val compileSdk = 31
+        const val buildTools = "31.0.0"
         const val minSDk = 23
-        const val targetSdk = 30
+        const val targetSdk = 31
         const val versionCode = 1
         const val versionName = "0.0.1"
     }
@@ -43,7 +43,6 @@ fun DependencyHandler.test() {
     add("testImplementation", "org.junit.jupiter:junit-jupiter-params:${Versions.junit}")
     add("testImplementation", "org.mockito:mockito-core:${Versions.mockito}")
     add("testImplementation", "org.mockito:mockito-inline:${Versions.mockito}")
-    add("testImplementation", "org.mockito.kotlin:mockito-kotlin:${Versions.mockito_kotlin}")
     add("testImplementation", "com.google.truth:truth:${Versions.truth}")
     add("testImplementation", "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}")
 }
