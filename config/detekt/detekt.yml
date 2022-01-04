@@ -172,8 +172,8 @@ exceptions:
       - RuntimeException
 
 formatting:
-  active: false # use spotless instead
-  android: false
+  active: true
+  android: true
   autoCorrect: true
   AnnotationOnSeparateLine:
     active: false

@@ -49,6 +49,7 @@ val detektAll by tasks.registering(io.gitlab.arturbosch.detekt.Detekt::class) {
     description = "Custom DETEKT task for all modules"
     parallel = true
     buildUponDefaultConfig = true
+    autoCorrect = true
     setSource(files(projectDir))
     config.from(files(rootProject.files("config/detekt/detekt.yml")))
     include("**/*.kt")
