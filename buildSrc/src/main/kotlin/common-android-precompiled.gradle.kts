@@ -1,3 +1,5 @@
+import gradle.kotlin.dsl.accessors._f622d452c00b27a80963693a69b89b07.implementation
+
 plugins {
     id("com.android.library")
     id("kotlin-android")
@@ -64,7 +66,9 @@ kapt {
 }
 
 dependencies {
-    core()
+    val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+
+    implementation(libs.findBundle("core").get())
     di()
     ui()
     lifecycle()

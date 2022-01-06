@@ -1,13 +1,6 @@
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
 object Config {
-    object Libs {
-        val core = listOf(
-            "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}",
-            "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}",
-            "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
-        )
-    }
 
     object Android {
         const val applicationId = "com.dbottillo.replacename"
@@ -22,12 +15,6 @@ object Config {
 
 fun DependencyHandler.implementation(list: List<String>) {
     list.forEach { dependency ->
-        add("implementation", dependency)
-    }
-}
-
-fun DependencyHandler.core() {
-    Config.Libs.core.forEach { dependency ->
         add("implementation", dependency)
     }
 }

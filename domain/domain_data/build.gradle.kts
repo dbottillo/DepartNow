@@ -9,7 +9,7 @@ kapt {
 }
 
 dependencies {
-    core()
+    implementation(libs.bundles.core)
     network()
 
     test()

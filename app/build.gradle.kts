@@ -49,7 +49,7 @@ dependencies {
     implementation(project(":feature_home:home_ui"))
     implementation(project(":feature_home:home_data"))
     implementation(project(":feature_about:about_ui"))
-    core()
+    implementation(libs.bundles.core)
     ui()
     di()
     network()

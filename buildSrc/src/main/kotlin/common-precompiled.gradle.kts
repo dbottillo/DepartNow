@@ -19,7 +19,10 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 dependencies {
-    core()
+    implementation(extensions.getByType<VersionCatalogsExtension>()
+        .named("libs")
+        .findBundle("core").get()
+    )
     implementation("javax.inject:javax.inject:1")
 }
 

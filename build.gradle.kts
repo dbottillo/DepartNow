@@ -1,8 +1,10 @@
+@file:Suppress("UnstableApiUsage", "DSL_SCOPE_VIOLATION")
+
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
 plugins {
-    id("io.gitlab.arturbosch.detekt") version BuildPluginsVersion.DETEKT
-    id("com.github.ben-manes.versions") version BuildPluginsVersion.VERSIONS_PLUGIN
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.versions)
 }
 
 allprojects {
@@ -21,17 +23,13 @@ apply(from = "githooks.gradle")
 apply(plugin = "com.github.ben-manes.versions")
 
 tasks {
-    register("clean", Delete::class.java) {
-        delete(rootProject.buildDir)
-    }
-
-    withType<DependencyUpdatesTask> {
+    withType<DependencyUpdatesTask>().configureEach {
         rejectVersionIf {
             candidate.version.isNonStable()
         }
     }
 
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
         kotlinOptions {
             jvmTarget = "11"
         }
@@ -58,12 +56,12 @@ val detektAll by tasks.registering(io.gitlab.arturbosch.detekt.Detekt::class) {
     exclude("**/build/**")
     baseline.fileValue(rootProject.file("config/detekt/baseline.xml"))
     reports {
-        xml.enabled = false
-        txt.enabled = false
-        sarif.enabled = false
+        xml.required.set(false)
+        txt.required.set(false)
+        sarif.required.set(false)
         html {
-            enabled = true
-            destination = file("build/reports/detekt.html")
+            required.set(true)
+            outputLocation.set(file("build/reports/detekt.html"))
         }
     }
 }
