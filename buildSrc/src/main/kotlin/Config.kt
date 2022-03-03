@@ -3,8 +3,6 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 object Config {
     object Libs {
         val core = listOf(
-            "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}",
-            "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}",
             "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
         )
     }

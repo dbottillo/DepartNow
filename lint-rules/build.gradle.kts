@@ -5,7 +5,6 @@ plugins {
 
 dependencies {
     compileOnly("com.android.tools.lint:lint-api:${Versions.lint}")
-    compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}")
     testImplementation("com.android.tools.lint:lint:${Versions.lint}")
     testImplementation("com.android.tools.lint:lint-tests:${Versions.lint}")
     testImplementation("com.google.truth:truth:${Versions.truth}")

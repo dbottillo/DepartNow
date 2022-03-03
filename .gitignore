@@ -10,3 +10,4 @@ build/
 */build
 .DS_Store
 /projectFilesBackup
+.java-version
