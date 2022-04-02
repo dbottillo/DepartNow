@@ -4,7 +4,7 @@ object Versions {
     const val gradle = "4.0.1"
     const val androidGradlePlugin = "7.1.2" // update also build.gradle.kts in buildSrc
 
-    const val kotlin = "1.6.10" // update also build.gradle.kts in buildSrc
+    const val kotlin = "1.6.20" // update also build.gradle.kts in buildSrc
     const val coroutines = "1.6.0"
 
     object AndroidX {
@@ -46,7 +46,7 @@ object Versions {
     }
 
     // testing
-    const val mockito = "4.3.1"
+    const val mockito = "4.4.0"
     const val mockito_kotlin = "4.0.0"
     const val mockito_android = "3.8.0"
     const val junit = "5.8.2"

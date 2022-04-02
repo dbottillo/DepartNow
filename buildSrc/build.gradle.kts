@@ -10,7 +10,7 @@ repositories {
 
 dependencies {
 
-    val kotlin = "1.6.10"
+    val kotlin = "1.6.20"
     val androidGradlePlugin = "7.1.2"
     val dagger = "2.41"
 
