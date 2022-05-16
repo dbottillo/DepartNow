@@ -30,7 +30,8 @@ class NonSemanticColorDetectorTest {
                 |res/layout/toolbar.xml:6: Error: Avoid non semantic use of colors in XML files. This will cause issues with different theme (eg. dark) support. For example, use primary instead of black. [NonSemanticColorUse]
                 |                    android:foreground="@color/red"
                 |                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                |2 errors, 0 warnings""".trimMargin()
+                |2 errors, 0 warnings
+""".trimMargin()
             )
     }
 }

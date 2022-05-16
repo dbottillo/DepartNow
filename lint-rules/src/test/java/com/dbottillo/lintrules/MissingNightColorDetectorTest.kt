@@ -58,7 +58,8 @@ class MissingNightColorDetectorTest {
                 |res/values/colors.xml:4: Error: Night color value for this color resource seems to be missing. If your app supports dark theme, then you should add an equivalent color resource for it in the night values folder. [MissingNightColor]
                 |                <color name="color_primary_slightly_dark">#0193e8</color>
                 |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                |1 errors, 0 warnings""".trimMargin()
+                |1 errors, 0 warnings
+""".trimMargin()
             )
     }
 }
