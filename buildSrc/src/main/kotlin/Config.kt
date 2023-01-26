@@ -9,10 +9,10 @@ object Config {
 
     object Android {
         const val applicationId = "com.dbottillo.replacename"
-        const val compileSdk = 31
-        const val buildTools = "31.0.0"
+        const val compileSdk = 33
+        const val buildTools = "33.0.0"
         const val minSDk = 23
-        const val targetSdk = 31
+        const val targetSdk = 33
         const val versionCode = 1
         const val versionName = "0.0.1"
     }
@@ -48,7 +48,7 @@ fun DependencyHandler.test() {
 
 fun DependencyHandler.uiTest() {
     add("androidTestImplementation", "androidx.test:runner:${Versions.Testing.support_runner}")
-    add("androidTestImplementation", "androidx.test:rules:${Versions.Testing.support_runner}")
+    add("androidTestImplementation", "androidx.test:rules:${Versions.Testing.support_rules}")
     add("androidTestImplementation", "androidx.test.espresso:espresso-core:${Versions.Testing.espresso}")
     add("androidTestImplementation", "androidx.test.espresso:espresso-web:${Versions.Testing.espresso}")
     add("androidTestImplementation", "androidx.test.espresso:espresso-intents:${Versions.Testing.espresso}")
@@ -59,7 +59,10 @@ fun DependencyHandler.uiTest() {
     add("kaptAndroidTest", "com.google.dagger:hilt-android-compiler:${Versions.dagger}")
     add("androidTestImplementation", "com.google.truth:truth:${Versions.truth}")
     add("androidTestImplementation", "com.squareup.okhttp3:mockwebserver:${Versions.OkHttp.core}")
-    add("androidTestImplementation", "com.jakewharton.espresso:okhttp3-idling-resource:${Versions.Testing.okhttp3_idling_resource}")
+    add(
+        "androidTestImplementation",
+        "com.jakewharton.espresso:okhttp3-idling-resource:${Versions.Testing.okhttp3_idling_resource}"
+    )
 }
 
 fun DependencyHandler.testAndroid() {

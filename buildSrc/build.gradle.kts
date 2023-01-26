@@ -10,9 +10,9 @@ repositories {
 
 dependencies {
 
-    val kotlin = "1.6.21"
-    val androidGradlePlugin = "7.2.0"
-    val dagger = "2.42"
+    val kotlin = "1.8.0"
+    val androidGradlePlugin = "7.4.0"
+    val dagger = "2.44.2"
 
     implementation("com.android.tools.build:gradle:$androidGradlePlugin")
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin")
