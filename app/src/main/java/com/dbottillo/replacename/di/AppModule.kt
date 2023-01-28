@@ -1,8 +1,6 @@
 package com.dbottillo.replacename.di
 
 import com.dbottillo.replacename.ApiInterface
-import com.dbottillo.replacename.Navigator
-import com.dbottillo.replacename.NavigatorImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,12 +12,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class AppModule {
-
-    @Singleton
-    @Provides
-    fun provideNavigator(): Navigator {
-        return NavigatorImpl()
-    }
 
     @Singleton
     @Provides

@@ -98,8 +98,28 @@ fun DependencyHandler.lifecycle() {
     add("implementation", "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.AndroidX.lifecycle}")
     add("implementation", "androidx.lifecycle:lifecycle-common-java8:${Versions.AndroidX.lifecycle}")
     add("implementation", "androidx.lifecycle:lifecycle-extensions:${Versions.AndroidX.lifecycleExtensions}")
+    add("implementation", "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.AndroidX.lifecycle}")
 }
 
 fun DependencyHandler.debug() {
     add("debugImplementation", "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}")
+}
+
+private const val COMPOSE_BOM = "androidx.compose:compose-bom:${Versions.Compose.bom}"
+fun DependencyHandler.compose() {
+    add("implementation", platform(COMPOSE_BOM))
+    add("implementation", "androidx.compose.ui:ui")
+    add("implementation", "androidx.compose.foundation:foundation")
+    add("implementation", "androidx.activity:activity-compose:${Versions.Compose.activity}")
+    add("implementation", "androidx.compose.material3:material3")
+    add("implementation", "androidx.compose.material3:material3-window-size-class")
+    add("implementation", "androidx.compose.animation:animation")
+    add("implementation", "androidx.compose.ui:ui-tooling")
+    add("implementation", "androidx.compose.ui:ui-tooling-preview")
+    add("implementation", "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.Compose.lifecycle}")
+    add("implementation", "androidx.navigation:navigation-compose:${Versions.Compose.navigation}")
+    add("implementation", "androidx.constraintlayout:constraintlayout-compose:${Versions.Compose.constraintLayout}")
+    add("implementation", "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.AndroidX.lifecycle}")
+    add("implementation", "com.google.accompanist:accompanist-systemuicontroller:${Versions.Compose.accompanist}")
+    add("implementation", "androidx.hilt:hilt-navigation-compose:${Versions.Compose.hiltNavigation}")
 }

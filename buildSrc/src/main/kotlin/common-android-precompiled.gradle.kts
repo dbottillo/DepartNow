@@ -23,6 +23,7 @@ android {
         resValues = false
         shaders = false
         viewBinding = true
+        compose = true
     }
 
     compileOptions {
@@ -47,14 +48,18 @@ android {
         resources.excludes.add("META-INF/io.netty.versions.properties")
     }
 
-    variantFilter {
-        ignore = buildType.name == "debug"
+    androidComponents.beforeVariants { variantBuilder ->
+        variantBuilder.enable = variantBuilder.buildType == "release"
     }
 
     lint {
         xmlReport = false
         lintConfig = file("$rootDir/config/lint/lint.xml")
         checkDependencies = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.Compose.compilerExtensionVersion
     }
 }
 
@@ -68,6 +73,7 @@ dependencies {
     di()
     ui()
     lifecycle()
+    compose()
 
     test()
     uiTest()

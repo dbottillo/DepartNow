@@ -11,4 +11,6 @@ android {
 dependencies {
     api(project(":core:core_ui"))
     api(project(":domain:domain_data"))
+
+    compose()
 }

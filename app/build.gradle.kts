@@ -42,6 +42,20 @@ android {
         xmlReport = false
         lintConfig = file("$rootDir/config/lint/lint.xml")
     }
+
+    buildFeatures {
+        buildConfig = false
+        aidl = false
+        renderScript = false
+        resValues = false
+        shaders = false
+        viewBinding = true
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.Compose.compilerExtensionVersion
+    }
 }
 
 dependencies {
@@ -54,6 +68,7 @@ dependencies {
     di()
     network()
     debug()
+    compose()
 
     test()
 

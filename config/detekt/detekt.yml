@@ -61,6 +61,7 @@ complexity:
     functionThreshold: 6
     constructorThreshold: 6
     ignoreDefaultParameters: false
+    ignoreAnnotated: [ 'Composable' ]
   MethodOverloading:
     active: false
     threshold: 6
@@ -303,10 +304,11 @@ naming:
     minimumFunctionNameLength: 3
   FunctionNaming:
     active: true
-    excludes: "**/test/**,**/androidTest/**,**/*.Test.kt,**/*.Spec.kt,**/*.Spek.kt"
+    excludes: [ '**/test/**','**/androidTest/**','**/*.Test.kt','**/*.Spec.kt','**/*.Spek.kt' ]
     functionPattern: '^([a-z$][a-zA-Z$0-9]*)|(`.*`)$'
     excludeClassPattern: '$^'
     ignoreOverridden: true
+    ignoreAnnotated: [ 'Composable' ]
   FunctionParameterNaming:
     active: true
     excludes: "**/test/**,**/androidTest/**,**/*.Test.kt,**/*.Spec.kt,**/*.Spek.kt"

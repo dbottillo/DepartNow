@@ -1,0 +1,5 @@
+<resources>
+    <string name="tab_home">Home</string>
+    <string name="tab_about">About</string>
+    <string name="top_app_bar_action_icon_description">Settings</string>
+</resources>

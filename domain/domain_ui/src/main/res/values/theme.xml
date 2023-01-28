@@ -1,31 +1,12 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:windowLightStatusBar">@bool/light_status_bar</item>
-
-        <item name="android:colorBackground">@color/background_color</item>
-        <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryVariant">@color/color_primary_variant</item>
-        <item name="colorOnPrimary">@color/color_on_primary</item>
-        <item name="colorSecondary">@color/color_secondary</item>
-        <item name="colorSecondaryVariant">@color/secondary_variant_color</item>
-        <item name="colorOnSecondary">@color/color_on_secondary</item>
-        <item name="colorSurface">@color/surface_color</item>
-        <item name="colorOnBackground">@color/color_on_background</item>
-        <item name="colorOnSurface">@color/color_on_surface</item>
-        <item name="scrimBackground">@color/mtrl_scrim_color</item>
-
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    <style name="NightAdjusted.Theme.ReplaceName" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.DayNight" />
-
-    <style name="AppToolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
-        <item name="android:background">?attr/colorPrimary</item>
-        <item name="titleTextColor">?attr/colorOnPrimary</item>
-        <item name="popupTheme">@style/AppTheme.PopupOverlay</item>
+    <style name="PlatformAdjusted.Theme.ReplaceName" parent="NightAdjusted.Theme.ReplaceName">
+        <item name="android:statusBarColor">@color/black30</item>
     </style>
 
+    <style name="AppTheme.ReplaceName" parent="PlatformAdjusted.Theme.ReplaceName" />
 </resources>
