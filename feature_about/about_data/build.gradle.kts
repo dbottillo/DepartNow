@@ -1,7 +1,5 @@
 plugins {
-    id("kotlin")
-    kotlin("kapt")
-    id("common-precompiled")
+    id("replacename.kotlin.library")
 }
 
 kapt {

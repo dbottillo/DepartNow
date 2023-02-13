@@ -1,5 +1,6 @@
 pluginManagement {
-    resolutionStrategy {
+    includeBuild("build-logic")
+    /*resolutionStrategy {
         eachPlugin {
             if (requested.id.id == "com.android.library") {
                 useModule("com.android.tools.build:gradle:${requested.version}")
@@ -8,7 +9,7 @@ pluginManagement {
                 useModule("com.android.tools.build:gradle:${requested.version}")
             }
         }
-    }
+    }*/
     repositories {
         gradlePluginPortal()
         google()

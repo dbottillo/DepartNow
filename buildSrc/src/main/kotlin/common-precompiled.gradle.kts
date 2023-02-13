@@ -18,10 +18,10 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     }
 }
 
-dependencies {
+/*dependencies {
     core()
     implementation("javax.inject:javax.inject:1")
-}
+}*/
 
 task("devTest") {
     dependsOn("test")

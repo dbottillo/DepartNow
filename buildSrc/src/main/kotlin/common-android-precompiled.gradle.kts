@@ -5,6 +5,7 @@ plugins {
     id("common-android-test-precompiled")
 }
 
+/*
 android {
     compileSdk = Config.Android.compileSdk
 
@@ -78,3 +79,4 @@ dependencies {
     test()
     uiTest()
 }
+*/

@@ -1,5 +1,6 @@
 plugins {
-    id("common-android-precompiled")
+    id("replacename.android.library")
+    id("replacename.android.library.compose")
 }
 
 dependencies {

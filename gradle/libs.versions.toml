@@ -1,0 +1,49 @@
+[versions]
+androidGradlePlugin = "7.4.0"
+moshi="1.14.0"
+kotlin = "1.7.21"
+coroutines = "1.6.4"
+androidDesugarJdkLibs = "1.2.2"
+androidXCore = "1.9.0"
+androidXCompat = "1.6.0"
+androidxComposeCompiler = "1.4.0"
+androidxComposeBom = "2023.01.00"
+androidxActivity = "1.6.1"
+constraintlayout = "2.1.4"
+constraintlayoutCompose="1.0.1"
+accompanist = "0.28.0"
+composeNavigation = "2.5.3"
+composeLifecycle = "2.5.1"
+hilt="2.44.2"
+androidxHiltNavigationCompose="1.0.0"
+
+[libraries]
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
+coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+androidx-core = { group = "androidx.core", name = "core", version.ref = "androidXCore" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidXCore" }
+android-compat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidXCompat" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
+androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+androidx-constraintlayout-compose = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "constraintlayoutCompose" }
+androidx-compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity"}
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-animation = { group = "androidx.compose.animation", name = "animation" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-compose-material3-window = { group = "androidx.compose.material3", name = "material3-window-size-class" }
+androidx-accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist"}
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNavigation" }
+androidx-lifecycle-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "composeLifecycle" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidxHiltNavigationCompose" }
+
+[bundles]
+ui = ["androidx-core", "androidx-core-ktx", "android-compat", "androidx-constraintlayout"]
+compose-ui = ["androidx-compose-ui", "androidx-compose-animation", "androidx-compose-foundation", "androidx-compose-material3", "androidx-compose-material3-window", "androidx-accompanist-systemuicontroller", "androidx-compose-ui-tooling", "androidx-compose-ui-tooling-preview", "androidx-navigation-compose", "androidx-lifecycle-compose", "androidx-constraintlayout-compose"]

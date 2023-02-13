@@ -1,6 +1,4 @@
 plugins {
-    id("common-android-precompiled")
-    id("common-dagger-precompiled")
 }
 
 dependencies {

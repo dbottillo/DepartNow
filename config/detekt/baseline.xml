@@ -2,19 +2,14 @@
 <SmellBaseline>
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
-    <ID>InvalidPackageDeclaration:BuildPluginsVersion.kt$.BuildPluginsVersion.kt</ID>
-    <ID>InvalidPackageDeclaration:Config.kt$.Config.kt</ID>
-    <ID>InvalidPackageDeclaration:Versions.kt$.Versions.kt</ID>
-    <ID>InvalidPackageDeclaration:build.gradle.kts$.build.gradle.kts</ID>
-    <ID>InvalidPackageDeclaration:common-android-precompiled.gradle.kts$.common-android-precompiled.gradle.kts</ID>
-    <ID>InvalidPackageDeclaration:common-android-test-precompiled.gradle.kts$.common-android-test-precompiled.gradle.kts</ID>
-    <ID>InvalidPackageDeclaration:common-dagger-precompiled.gradle.kts$.common-dagger-precompiled.gradle.kts</ID>
-    <ID>InvalidPackageDeclaration:common-precompiled.gradle.kts$.common-precompiled.gradle.kts</ID>
-    <ID>InvalidPackageDeclaration:settings.gradle.kts$.settings.gradle.kts</ID>
+    <ID>MagicNumber:AndroidApplicationConventionPlugin.kt$AndroidApplicationConventionPlugin$33</ID>
+    <ID>MagicNumber:AndroidLibraryConventionPlugin.kt$AndroidLibraryConventionPlugin$33</ID>
+    <ID>MagicNumber:AndroidLibraryFeaturePlugin.kt$AndroidLibraryFeaturePlugin$33</ID>
+    <ID>MagicNumber:KotlinAndroid.kt$23</ID>
+    <ID>MagicNumber:KotlinAndroid.kt$33</ID>
     <ID>StringLiteralDuplication:Config.kt$"androidTestImplementation"</ID>
     <ID>StringLiteralDuplication:Config.kt$"implementation"</ID>
     <ID>StringLiteralDuplication:Config.kt$"testImplementation"</ID>
-    <ID>StringLiteralDuplication:Versions.kt$Versions$"1.4.0"</ID>
     <ID>StringLiteralDuplication:build.gradle.kts$"engBuild"</ID>
     <ID>StringLiteralDuplication:common-android-test-precompiled.gradle.kts$"testReleaseUnitTest"</ID>
   </CurrentIssues>

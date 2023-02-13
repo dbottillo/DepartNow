@@ -1,6 +1,7 @@
 plugins {
-    id("common-android-precompiled")
-    id("common-dagger-precompiled")
+    id("replacename.android.feature")
+    id("replacename.android.library.compose")
+    id("replacename.android.hilt")
 }
 
 dependencies {
@@ -8,5 +9,5 @@ dependencies {
     implementation(project(":domain:domain_ui"))
     implementation(project(":feature_home:home_data"))
 
-    compose()
+    implementation(libs.bundles.compose.ui)
 }

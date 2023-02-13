@@ -18,17 +18,6 @@ object Versions {
         const val lifecycleExtensions = "2.2.0"
     }
 
-    object Compose {
-        const val bom = "2023.01.00" // https://developer.android.com/jetpack/androidx/releases/compose
-        const val compilerExtensionVersion = "1.4.0" // https://developer.android.com/jetpack/androidx/releases/compose-kotlin
-        const val activity = "1.6.1"
-        const val lifecycle = "2.5.1"
-        const val navigation = "2.5.3"
-        const val constraintLayout = "1.0.1"
-        const val accompanist = "0.28.0"
-        const val hiltNavigation = "1.0.0"
-    }
-
     const val material = "1.8.0"
     const val dagger = "2.44.2" // update also build.gradle.kts in buildSrc
     const val leakCanary = "2.10"

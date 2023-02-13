@@ -1,20 +1,14 @@
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("kotlin-kapt")
-    id("common-dagger-precompiled")
+    id("replacename.android.application")
+    id("replacename.android.application.compose")
+    id("replacename.android.hilt")
 }
 
 android {
-    compileSdk = Config.Android.compileSdk
-    buildToolsVersion = Config.Android.buildTools
-
     defaultConfig {
-        applicationId = Config.Android.applicationId
-        minSdk = Config.Android.minSDk
-        targetSdk = Config.Android.targetSdk
-        versionCode = Config.Android.versionCode
-        versionName = Config.Android.versionName
+        applicationId = "com.dbottillo.replacename"
+        versionCode = 1
+        versionName = "0.0.1"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -50,11 +44,6 @@ android {
         resValues = false
         shaders = false
         viewBinding = true
-        compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.Compose.compilerExtensionVersion
     }
 }
 
@@ -63,12 +52,10 @@ dependencies {
     implementation(project(":feature_home:home_ui"))
     implementation(project(":feature_home:home_data"))
     implementation(project(":feature_about:about_ui"))
-    core()
-    ui()
-    di()
+    implementation(libs.bundles.compose.ui)
+    // core()
     network()
     debug()
-    compose()
 
     test()
 

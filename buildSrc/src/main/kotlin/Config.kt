@@ -6,16 +6,6 @@ object Config {
             "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
         )
     }
-
-    object Android {
-        const val applicationId = "com.dbottillo.replacename"
-        const val compileSdk = 33
-        const val buildTools = "33.0.0"
-        const val minSDk = 23
-        const val targetSdk = 33
-        const val versionCode = 1
-        const val versionName = "0.0.1"
-    }
 }
 
 fun DependencyHandler.implementation(list: List<String>) {
@@ -28,11 +18,6 @@ fun DependencyHandler.core() {
     Config.Libs.core.forEach { dependency ->
         add("implementation", dependency)
     }
-}
-
-fun DependencyHandler.di() {
-    add("implementation", "com.google.dagger:hilt-android:${Versions.dagger}")
-    add("kapt", "com.google.dagger:hilt-compiler:${Versions.dagger}")
 }
 
 fun DependencyHandler.test() {
@@ -103,23 +88,4 @@ fun DependencyHandler.lifecycle() {
 
 fun DependencyHandler.debug() {
     add("debugImplementation", "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}")
-}
-
-private const val COMPOSE_BOM = "androidx.compose:compose-bom:${Versions.Compose.bom}"
-fun DependencyHandler.compose() {
-    add("implementation", platform(COMPOSE_BOM))
-    add("implementation", "androidx.compose.ui:ui")
-    add("implementation", "androidx.compose.foundation:foundation")
-    add("implementation", "androidx.activity:activity-compose:${Versions.Compose.activity}")
-    add("implementation", "androidx.compose.material3:material3")
-    add("implementation", "androidx.compose.material3:material3-window-size-class")
-    add("implementation", "androidx.compose.animation:animation")
-    add("implementation", "androidx.compose.ui:ui-tooling")
-    add("implementation", "androidx.compose.ui:ui-tooling-preview")
-    add("implementation", "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.Compose.lifecycle}")
-    add("implementation", "androidx.navigation:navigation-compose:${Versions.Compose.navigation}")
-    add("implementation", "androidx.constraintlayout:constraintlayout-compose:${Versions.Compose.constraintLayout}")
-    add("implementation", "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.AndroidX.lifecycle}")
-    add("implementation", "com.google.accompanist:accompanist-systemuicontroller:${Versions.Compose.accompanist}")
-    add("implementation", "androidx.hilt:hilt-navigation-compose:${Versions.Compose.hiltNavigation}")
 }
