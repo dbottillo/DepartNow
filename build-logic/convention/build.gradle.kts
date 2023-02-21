@@ -34,7 +34,7 @@ gradlePlugin {
         }
         register("androidFeature") {
             id = "replacename.android.feature"
-            implementationClass = "AndroidLibraryFeaturePlugin"
+            implementationClass = "AndroidFeatureLibraryPlugin"
         }
         register("androidHilt") {
             id = "replacename.android.hilt"

@@ -10,6 +10,7 @@ import java.io.File
 /**
  * Configure Compose-specific options
  */
+@Suppress("StringLiteralDuplication")
 internal fun Project.configureAndroidCompose(
     commonExtension: CommonExtension<*, *, *, *>,
 ) {
@@ -32,6 +33,7 @@ internal fun Project.configureAndroidCompose(
             val bom = libs.findLibrary("androidx-compose-bom").get()
             add("implementation", platform(bom))
             add("implementation", libs.findLibrary("androidx-compose-runtime").get())
+            add("implementation", libs.findBundle("compose-ui").get())
             add("androidTestImplementation", platform(bom))
         }
     }

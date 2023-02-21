@@ -65,7 +65,6 @@ dependencies {
     implementation(project(":feature_home:home_ui"))
     implementation(project(":feature_home:home_data"))
     implementation(project(":feature_about:about_ui"))
-    implementation(libs.bundles.compose.ui)
     // core()
     network()
     debug()
@@ -88,16 +87,4 @@ dependencies {
 kapt {
     useBuildCache = true
     correctErrorTypes = true
-}
-
-task("devTest") {
-    dependsOn("testDebugUnitTest")
-}
-
-task("stagingTest") {
-    dependsOn("testDebugUnitTest")
-}
-
-task("prodTest") {
-    dependsOn("testReleaseUnitTest")
 }

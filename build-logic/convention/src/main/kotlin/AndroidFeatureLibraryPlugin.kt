@@ -8,7 +8,8 @@ import org.gradle.kotlin.dsl.getByType
 import com.dbottillo.replacename.configureKotlinAndroid
 import org.gradle.api.artifacts.VersionCatalogsExtension
 
-class AndroidLibraryFeaturePlugin : Plugin<Project> {
+class AndroidFeatureLibraryPlugin : Plugin<Project> {
+    @Suppress("StringLiteralDuplication", "MagicNumber")
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
@@ -22,6 +23,8 @@ class AndroidLibraryFeaturePlugin : Plugin<Project> {
             }
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
             dependencies {
+                add("implementation", project(":core:core_ui"))
+                add("implementation", project(":domain:domain_ui"))
                 add("androidTestImplementation", kotlin("test"))
                 add("testImplementation", kotlin("test"))
 

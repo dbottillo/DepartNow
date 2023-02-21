@@ -13,6 +13,4 @@ android {
 dependencies {
     api(project(":core:core_ui"))
     api(project(":domain:domain_data"))
-
-    implementation(libs.bundles.compose.ui)
 }
