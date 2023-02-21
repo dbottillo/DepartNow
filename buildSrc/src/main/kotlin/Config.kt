@@ -6,6 +6,16 @@ object Config {
             "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
         )
     }
+
+    object Android {
+        const val applicationId = "com.dbottillo.replacename"
+        const val compileSdk = 33
+        const val buildTools = "33.0.0"
+        const val minSDk = 23
+        const val targetSdk = 33
+        const val versionCode = 1
+        const val versionName = "0.0.1"
+    }
 }
 
 fun DependencyHandler.implementation(list: List<String>) {

@@ -45,6 +45,19 @@ android {
         shaders = false
         viewBinding = true
     }
+
+    packagingOptions {
+        resources.excludes.add("LICENSE.txt")
+        resources.excludes.add("LICENSE.txt")
+        resources.excludes.add("META-INF/LICENSE.txt")
+        resources.excludes.add("META-INF/NOTICE.txt")
+        resources.excludes.add("META-INF/LICENSE.md")
+        resources.excludes.add("META-INF/LICENSE-notice.md")
+        resources.excludes.add("META-INF/NOTICE")
+        resources.excludes.add("META-INF/INDEX.LIST")
+        resources.excludes.add("META-INF/services/javax.annotation.processing.Processor")
+        resources.excludes.add("META-INF/io.netty.versions.properties")
+    }
 }
 
 dependencies {

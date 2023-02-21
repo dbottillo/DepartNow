@@ -44,5 +44,9 @@ gradlePlugin {
             id = "replacename.kotlin.library"
             implementationClass = "KotlinLibraryConventionPlugin"
         }
+        register("kotlinFeatureLibrary") {
+            id = "replacename.kotlin.feature.library"
+            implementationClass = "KotlinFeatureLibraryConventionPlugin"
+        }
     }
 }

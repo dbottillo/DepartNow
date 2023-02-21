@@ -7,7 +7,7 @@ import com.dbottillo.replacename.registerTestTasks
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-class KotlinLibraryConventionPlugin : Plugin<Project> {
+class KotlinFeatureLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {

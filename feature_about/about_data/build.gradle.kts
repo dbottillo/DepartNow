@@ -1,5 +1,5 @@
 plugins {
-    id("replacename.kotlin.library")
+    id("replacename.kotlin.feature.library")
 }
 
 kapt {
