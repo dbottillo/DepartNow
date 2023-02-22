@@ -3,9 +3,9 @@ androidGradlePlugin = "7.4.1"
 moshi="1.14.0"
 kotlin = "1.8.10"
 coroutines = "1.6.4"
-androidDesugarJdkLibs = "1.2.2"
+androidDesugarJdkLibs = "2.0.2"
 androidXCore = "1.9.0"
-androidXCompat = "1.6.0"
+androidXCompat = "1.6.1"
 androidxComposeCompiler = "1.4.2"
 androidxComposeBom = "2023.01.00"
 androidxActivity = "1.6.1"
@@ -14,7 +14,7 @@ constraintlayoutCompose="1.0.1"
 accompanist = "0.28.0"
 composeNavigation = "2.5.3"
 composeLifecycle = "2.5.1"
-hilt="2.44.2"
+hilt="2.45"
 androidxHiltNavigationCompose="1.0.0"
 junit = "5.9.2" # https://junit.org/junit5/docs/5.8.0/release-notes/
 espresso = "3.5.1" # https://developer.android.com/jetpack/androidx/releases/test
@@ -25,9 +25,9 @@ turbine = "0.12.1" # https://github.com/cashapp/turbine/
 retrofit = "2.9.0"
 okhttp = "4.10.0"
 detekt = "1.22.0"
-versionsPlugin = "0.44.0"
+versionsPlugin = "0.46.0"
 leakCanary = "2.10"
-lint = "30.4.0"
+lint = "30.4.1"
 
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }

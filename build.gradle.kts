@@ -1,5 +1,3 @@
-
-
 buildscript {
     repositories {
         google()
@@ -15,48 +13,15 @@ plugins {
     alias(libs.plugins.versions)
 }
 
-/*
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    extra.set("engBuild", project.findProperty("engBuild") ?: "true")
-}
-
-if (rootProject.extra.get("engBuild") == "true") {
-    println("eng build pattern on!")
-}
-
 apply(from = "githooks.gradle")
-apply(plugin = "com.github.ben-manes.versions")
 
-tasks {
-    register("clean", Delete::class.java) {
-        delete(rootProject.buildDir)
-    }
-
-    withType<DependencyUpdatesTask> {
-        rejectVersionIf {
-            candidate.version.isNonStable()
-        }
-    }
-
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = "11"
-        }
-    }
-
-    withType<JavaCompile> {
-        sourceCompatibility = JavaVersion.VERSION_11.toString()
-        targetCompatibility = JavaVersion.VERSION_11.toString()
+tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask>{
+    rejectVersionIf {
+        candidate.version.isNonStable()
     }
 }
 
 fun String.isNonStable(): Boolean = "^[0-9,.v-]+(-r)?$".toRegex().matches(this).not()
-
- */
 
 val detektAll by tasks.registering(io.gitlab.arturbosch.detekt.Detekt::class) {
     description = "Custom DETEKT task for all modules"
