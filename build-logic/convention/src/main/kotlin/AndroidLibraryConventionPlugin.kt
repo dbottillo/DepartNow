@@ -8,7 +8,9 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.kotlin
 import org.gradle.kotlin.dsl.getByType
 import com.dbottillo.replacename.configureKotlinAndroid
+import com.dbottillo.replacename.registerTestTasks
 import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.jetbrains.kotlin.gradle.plugin.KaptExtension
 
 class AndroidLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -30,6 +32,10 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                     it.enable = it.buildType == "release"
                 }
             }
+            extensions.getByType<KaptExtension>().apply {
+                useBuildCache = true
+                correctErrorTypes = true
+            }
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
             dependencies {
                 add("androidTestImplementation", kotlin("test"))
@@ -37,6 +43,8 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 // add("implementation", libs.bund)
                 "implementation"(libs.findBundle("ui").get())
             }
+
+            registerTestTasks()
         }
     }
 }

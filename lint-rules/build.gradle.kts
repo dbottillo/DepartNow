@@ -4,10 +4,10 @@ plugins {
 }
 
 dependencies {
-    compileOnly("com.android.tools.lint:lint-api:${Versions.lint}")
-    testImplementation("com.android.tools.lint:lint:${Versions.lint}")
-    testImplementation("com.android.tools.lint:lint-tests:${Versions.lint}")
-    testImplementation("com.google.truth:truth:${Versions.truth}")
+    compileOnly("com.android.tools.lint:lint-api:${libs.versions.lint.get()}")
+    testImplementation("com.android.tools.lint:lint:${libs.versions.lint.get()}")
+    testImplementation("com.android.tools.lint:lint-tests:${libs.versions.lint.get()}")
+    testImplementation("com.google.truth:truth:${libs.versions.truth.get()}")
 }
 
 tasks.withType<Jar> {

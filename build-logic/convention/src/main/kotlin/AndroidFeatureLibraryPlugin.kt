@@ -30,6 +30,7 @@ class AndroidFeatureLibraryPlugin : Plugin<Project> {
 
                 add("implementation", libs.findLibrary("androidx.hilt.navigation.compose").get())
                 "implementation"(libs.findBundle("ui").get())
+                "testImplementation"(libs.findBundle("test").get())
             }
         }
     }

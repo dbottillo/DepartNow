@@ -30,7 +30,7 @@ fun Project.configureKapt() {
 }
 
 fun Project.registerTestTasks() {
-    tasks.register("devTest") {
+    tasks.register("debugTest") {
         dependsOn("test")
     }
     tasks.register("stagingTest") {

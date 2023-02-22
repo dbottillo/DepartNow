@@ -23,15 +23,6 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    kotlinOptions {
-        jvmTarget = "11"
-    }
-
     lintOptions {
         xmlReport = false
         lintConfig = file("$rootDir/config/lint/lint.xml")
@@ -65,11 +56,9 @@ dependencies {
     implementation(project(":feature_home:home_ui"))
     implementation(project(":feature_home:home_data"))
     implementation(project(":feature_about:about_ui"))
-    // core()
-    network()
-    debug()
 
-    test()
+    implementation(libs.bundles.network)
+    debugImplementation(libs.bundles.debug)
 
     /*implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -82,9 +71,4 @@ dependencies {
     testImplementation "junit:junit:4.12"
     androidTestImplementation "androidx.test.ext:junit:1.1.1"
     androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"*/
-}
-
-kapt {
-    useBuildCache = true
-    correctErrorTypes = true
 }
