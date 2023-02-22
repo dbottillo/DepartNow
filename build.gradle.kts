@@ -15,7 +15,7 @@ plugins {
 
 apply(from = "githooks.gradle")
 
-tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask>{
+tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
     rejectVersionIf {
         candidate.version.isNonStable()
     }

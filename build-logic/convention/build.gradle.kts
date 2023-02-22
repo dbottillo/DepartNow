@@ -1,3 +1,5 @@
+@file:Suppress("MagicNumber")
+
 plugins {
     `kotlin-dsl`
 }
@@ -7,6 +9,10 @@ group = "com.dbottillo.replacename.buildlogic"
 java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
+}
+
+kotlin {
+    jvmToolchain(11)
 }
 
 dependencies {
