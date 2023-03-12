@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("replacename.android.application")
     id("replacename.android.application.compose")
@@ -14,10 +16,16 @@ android {
     }
 
     buildTypes {
+        val transportAppKey = gradleLocalProperties(rootDir).getProperty("transportapi_app_key")
+        val transportAppId = gradleLocalProperties(rootDir).getProperty("transportapi_app_id")
         getByName("debug") {
+            buildConfigField("String", "TRANSPORT_APP_KEY", transportAppKey)
+            buildConfigField("String", "TRANSPORT_APP_ID", transportAppId)
             matchingFallbacks.add("release")
         }
         getByName("release") {
+            buildConfigField("String", "TRANSPORT_APP_KEY", transportAppKey)
+            buildConfigField("String", "TRANSPORT_APP_ID", transportAppId)
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
@@ -29,7 +37,7 @@ android {
     }
 
     buildFeatures {
-        buildConfig = false
+        buildConfig = true
         aidl = false
         renderScript = false
         resValues = false

@@ -46,7 +46,10 @@ fun HomeScreen(uiState: Lce<Todo>, navigateToDepartures: () -> Unit) {
                 }
             }
         }
-        OutlinedButton(onClick = { navigateToDepartures.invoke() }) {
+        OutlinedButton(
+            modifier = Modifier.padding(start = 16.dp),
+            onClick = { navigateToDepartures.invoke() }
+        ) {
             Text("Open Departures")
         }
     }

@@ -4,13 +4,8 @@
   <CurrentIssues>
     <ID>MagicNumber:AndroidApplicationConventionPlugin.kt$AndroidApplicationConventionPlugin$33</ID>
     <ID>MagicNumber:AndroidLibraryConventionPlugin.kt$AndroidLibraryConventionPlugin$33</ID>
-    <ID>MagicNumber:AndroidLibraryFeaturePlugin.kt$AndroidLibraryFeaturePlugin$33</ID>
     <ID>MagicNumber:KotlinAndroid.kt$23</ID>
     <ID>MagicNumber:KotlinAndroid.kt$33</ID>
-    <ID>StringLiteralDuplication:Config.kt$"androidTestImplementation"</ID>
-    <ID>StringLiteralDuplication:Config.kt$"implementation"</ID>
-    <ID>StringLiteralDuplication:Config.kt$"testImplementation"</ID>
-    <ID>StringLiteralDuplication:build.gradle.kts$"engBuild"</ID>
-    <ID>StringLiteralDuplication:common-android-test-precompiled.gradle.kts$"testReleaseUnitTest"</ID>
+    <ID>StringLiteralDuplication:build.gradle.kts$"String"</ID>
   </CurrentIssues>
 </SmellBaseline>

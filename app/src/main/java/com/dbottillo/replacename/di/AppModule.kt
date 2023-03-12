@@ -1,6 +1,9 @@
 package com.dbottillo.replacename.di
 
 import com.dbottillo.replacename.ApiInterface
+import com.dbottillo.replacename.AppBuildConfig
+import com.dbottillo.replacename.BuildConfig
+import com.dbottillo.replacename.DeparturesApiInterface
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,5 +24,27 @@ class AppModule {
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
             .create(ApiInterface::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideDeparturesApiService(): DeparturesApiInterface {
+        return Retrofit.Builder()
+            .baseUrl("https://transportapi.com/v3/uk/")
+            .addConverterFactory(MoshiConverterFactory.create())
+            .build()
+            .create(DeparturesApiInterface::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAppBuildConfig(): AppBuildConfig {
+        return object : AppBuildConfig {
+            override val transportAppKey: String
+                get() = BuildConfig.TRANSPORT_APP_KEY
+
+            override val transportAppId: String
+                get() = BuildConfig.TRANSPORT_APP_ID
+        }
     }
 }

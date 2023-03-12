@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -50,11 +51,19 @@ fun DeparturesScreen(uiState: DeparturesUiState, onBackClick: () -> Unit) {
             .fillMaxSize()
             .background(Color.Black)
     ) {
-        IconButton(onClick = { onBackClick.invoke() }) {
-            Icon(
-                imageVector = Icons.Default.Close,
-                contentDescription = null,
-                tint = Color.White.copy(alpha = 0.5f)
+        Row {
+            IconButton(onClick = { onBackClick.invoke() }) {
+                Icon(
+                    imageVector = Icons.Default.Close,
+                    contentDescription = null,
+                    tint = Color.White.copy(alpha = 0.5f)
+                )
+            }
+            Spacer(modifier = Modifier.weight(1f))
+            Text(
+                modifier = Modifier.padding(top = 16.dp, end = 16.dp),
+                text = "Last updated ${uiState.departureData.lastTimeUpdated}",
+                color = Color.White
             )
         }
         Box(
@@ -83,12 +92,10 @@ fun DeparturesScreen(uiState: DeparturesUiState, onBackClick: () -> Unit) {
                 .background(Color.Black.copy(0.8f))
                 .padding(16.dp)
         ) {
-            Text("uiState: $uiState", color = Color.White)
-
-            if (uiState.status is DeparturesUiStatus.Loading) {
-                CircularProgressIndicator(
-                    color = Color.Cyan,
-                    modifier = Modifier.align(Alignment.TopEnd)
+            if (uiState.status is DeparturesUiStatus.Error) {
+                Text(
+                    "error: ${uiState.status.throwable}",
+                    color = Color.White
                 )
             }
         }
@@ -100,7 +107,11 @@ fun DeparturesScreen(uiState: DeparturesUiState, onBackClick: () -> Unit) {
 fun ColumnScope.Train(train: DeparturesUiTrainData) {
     Row {
         Text(train.minutes.toString(), color = Color.White, fontSize = 140.sp)
-        Column(modifier = Modifier.padding(start = 16.dp).align(Alignment.CenterVertically)) {
+        Column(
+            modifier = Modifier
+            .padding(start = 16.dp)
+            .align(Alignment.CenterVertically)
+        ) {
             Text("${train.time} to", color = Color.White, fontSize = 30.sp)
             Text(train.destination, color = Color.White, fontSize = 30.sp)
         }
@@ -149,7 +160,7 @@ private fun DeparturesScreenErrorPreview() {
                     time = "15:41"
                 )
             ),
-            status = DeparturesUiStatus.Error
+            status = DeparturesUiStatus.Error(Throwable("error"))
         )
         ) {}
     }

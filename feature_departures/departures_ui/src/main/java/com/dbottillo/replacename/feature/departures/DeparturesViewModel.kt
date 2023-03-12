@@ -1,8 +1,10 @@
 package com.dbottillo.replacename.feature.departures
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dbottillo.replacename.ApiResult
+import com.dbottillo.replacename.StationTimetableResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -30,7 +32,7 @@ class DeparturesViewModel @Inject constructor(
         )
     )
 
-    private val _dataFlow = MutableStateFlow(DeparturesData)
+    private val _dataFlow = MutableStateFlow<StationTimetableResponse?>(null)
     private val _statusFlow = MutableStateFlow<DeparturesUiStatus>(DeparturesUiStatus.Idle)
 
     val uiState: StateFlow<DeparturesUiState> = combine(_dataFlow, _statusFlow) { data, status ->
@@ -42,17 +44,19 @@ class DeparturesViewModel @Inject constructor(
     )
 
     @Suppress("UNUSED_PARAMETER", "MagicNumber")
-    private fun map(data: DeparturesData): DeparturesUiData {
+    private fun map(data: StationTimetableResponse?): DeparturesUiData {
+        if (data == null) return initialData
         return DeparturesUiData(
+            lastTimeUpdated = data.time_of_day,
             firstTrain = DeparturesUiTrainData(
-                minutes = 15,
-                destination = "Moorgate",
-                time = "15:16"
+                minutes = data.departures.all.firstOrNull()?.best_arrival_estimate_mins ?: 0,
+                destination = data.departures.all.firstOrNull()?.station_detail?.destination?.station_name ?: "-",
+                time = data.departures.all.firstOrNull()?.expected_arrival_time ?: "-",
             ),
             secondTrain = DeparturesUiTrainData(
-                minutes = 30,
-                destination = "Moorgate",
-                time = "15:41"
+                minutes = data.departures.all.getOrNull(1)?.best_arrival_estimate_mins ?: 0,
+                destination = data.departures.all.getOrNull(1)?.station_detail?.destination?.station_name ?: "-",
+                time = data.departures.all.getOrNull(1)?.expected_arrival_time ?: "-",
             )
         )
     }
@@ -66,7 +70,8 @@ class DeparturesViewModel @Inject constructor(
                     _statusFlow.emit(DeparturesUiStatus.Idle)
                 }
                 is ApiResult.Error -> {
-                    _statusFlow.emit(DeparturesUiStatus.Error)
+                    Log.e("TAG", "error: ${res.exception}")
+                    _statusFlow.emit(DeparturesUiStatus.Error(res.exception))
                 }
             }
         }
@@ -82,10 +87,11 @@ sealed class DeparturesUiStatus {
     object Idle : DeparturesUiStatus()
     object Loading : DeparturesUiStatus()
 
-    object Error : DeparturesUiStatus()
+    data class Error(val throwable: Throwable) : DeparturesUiStatus()
 }
 
 data class DeparturesUiData(
+    val lastTimeUpdated: String = "-",
     val firstTrain: DeparturesUiTrainData,
     val secondTrain: DeparturesUiTrainData
 )
