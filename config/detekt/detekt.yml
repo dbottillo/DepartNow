@@ -75,6 +75,8 @@ complexity:
     ignoreAnnotation: true
     excludeStringsWithLessThan5Characters: true
     ignoreStringsRegex: '$^'
+    ignoreAnnotated:
+      - 'Composable'
   TooManyFunctions:
     active: false
     excludes: "**/test/**,**/androidTest/**,**/*.Test.kt,**/*.Spec.kt,**/*.Spek.kt"
@@ -465,6 +467,8 @@ style:
     ignoreNamedArgument: true
     ignoreEnums: false
     ignoreRanges: false
+    ignoreAnnotated:
+      - 'Composable'
   MandatoryBracesIfStatements:
     active: false
   MaxLineLength:
