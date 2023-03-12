@@ -56,6 +56,7 @@ dependencies {
     implementation(project(":feature_home:home_ui"))
     implementation(project(":feature_home:home_data"))
     implementation(project(":feature_about:about_ui"))
+    implementation(project(":feature_departures:departures_ui"))
 
     implementation(libs.bundles.network)
     debugImplementation(libs.bundles.debug)

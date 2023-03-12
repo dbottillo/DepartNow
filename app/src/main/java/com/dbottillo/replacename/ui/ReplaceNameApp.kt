@@ -64,12 +64,14 @@ fun ReplaceNameApp(
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         snackbarHost = { SnackbarHost(snackbarHostState) },
         bottomBar = {
-            AppBottomBar(
-                destinations = appState.topLevelDestinations,
-                onNavigateToDestination = appState::navigateToTopLevelDestination,
-                currentDestination = appState.currentDestination,
-                modifier = Modifier.testTag("AppBottomBar"),
-            )
+            if (appState.shouldShowBottomBar) {
+                AppBottomBar(
+                    destinations = appState.topLevelDestinations,
+                    onNavigateToDestination = appState::navigateToTopLevelDestination,
+                    currentDestination = appState.currentDestination,
+                    modifier = Modifier.testTag("AppBottomBar"),
+                )
+            }
         },
     ) { padding ->
         Row(

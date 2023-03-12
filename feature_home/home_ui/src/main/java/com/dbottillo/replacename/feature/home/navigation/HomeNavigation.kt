@@ -12,8 +12,10 @@ fun NavController.navigateToHome(navOptions: NavOptions? = null) {
     this.navigate(HOME_NAVIGATION_ROUTE, navOptions)
 }
 
-fun NavGraphBuilder.homeScreen() {
+fun NavGraphBuilder.homeScreen(navigateToDepartures: () -> Unit) {
     composable(route = HOME_NAVIGATION_ROUTE) {
-        HomeRoute()
+        HomeRoute(
+            navigateToDepartures = navigateToDepartures
+        )
     }
 }

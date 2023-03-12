@@ -77,6 +77,9 @@ class ReplaceNameAppState(
         }
     }
 
+    val shouldShowBottomBar: Boolean
+        @Composable get() = currentTopLevelDestination != null
+
     fun onBackClick() {
         navController.popBackStack()
     }

@@ -5,6 +5,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.dbottillo.replacename.feature.about.navigation.aboutScreen
+import com.dbottillo.replacename.feature.departures.navigation.departuresScreen
+import com.dbottillo.replacename.feature.departures.navigation.navigateToDepartures
 import com.dbottillo.replacename.feature.home.navigation.HOME_NAVIGATION_ROUTE
 import com.dbottillo.replacename.feature.home.navigation.homeScreen
 
@@ -20,15 +22,10 @@ fun ReplaceNameNavHost(
         startDestination = startDestination,
         modifier = modifier,
     ) {
-        homeScreen()
+        homeScreen {
+            navController.navigateToDepartures()
+        }
         aboutScreen()
-       /* interestsGraph(
-            navigateToTopic = { topicId ->
-                navController.navigateToTopic(topicId)
-            },
-            nestedGraphs = {
-                topicScreen(onBackClick)
-            },
-        )*/
+        departuresScreen(onBackClick = onBackClick)
     }
 }

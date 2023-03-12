@@ -75,19 +75,13 @@ def filter_and_rename(root, names, placeholder, replaceValue):
 
 def format_content(root, filenames):
     for filename in filenames:
-        if filename.endswith(('.xml', '.gradle')):
+        if filename.endswith(('.xml', '.gradle.kts')):
             fpath = os.path.join(root, filename)
             with open(fpath) as f:
                 s = f.read()
             s = s.replace("{FEATURE_NAME}", feature_name)
             with open(fpath, "w") as f:
                 f.write(s)
-
-
-def integrate_feature():
-    f = open('../settings.gradle', 'a')
-    f.write('include \':feature_' + feature_name + ':' + feature_name + '_data\',\':feature_' + feature_name + ':' + feature_name + '_ui\' \n')
-    f.close()
 
 
 if __name__ == '__main__':
@@ -108,4 +102,3 @@ if __name__ == '__main__':
     perform_step('Create feature package', create_feature_package)
     perform_step('Formatting files content...', format_files_content)
     perform_step('Tidying up module...', tidy_up_module)
-    perform_step('Adding ' + feature_name + ' to settings.gradle', integrate_feature)
