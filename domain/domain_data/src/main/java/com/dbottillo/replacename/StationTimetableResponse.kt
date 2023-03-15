@@ -45,5 +45,17 @@ data class BusStopDepartureResponse(
 @JsonClass(generateAdapter = true)
 data class BusDepartureResponse(
     val expected_departure_time: String?,
-    val direction: String
+    val direction: String,
+    val expected: BusExpectedResponse?
+)
+
+@JsonClass(generateAdapter = true)
+data class BusExpectedResponse(
+    val arrival: BusExpectedArrivalResponse
+)
+
+@JsonClass(generateAdapter = true)
+data class BusExpectedArrivalResponse(
+    val date: String?,
+    val time: String?
 )

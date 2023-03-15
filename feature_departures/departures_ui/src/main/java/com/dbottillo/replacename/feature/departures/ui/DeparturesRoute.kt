@@ -99,17 +99,15 @@ fun DeparturesScreen(
                     modifier = Modifier.align(Alignment.TopEnd)
                 )
             }
-        }
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.Black.copy(0.8f))
-                .padding(16.dp)
-        ) {
             if (uiState.status is DeparturesUiStatus.Error) {
                 Text(
-                    "error: ${uiState.status.throwable}",
-                    color = Color.White
+                    text = "error: ${uiState.status.throwable}",
+                    color = Color.Red,
+                    fontSize = 30.sp,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                        .align(Alignment.BottomCenter)
                 )
             }
         }
@@ -122,7 +120,7 @@ fun ColumnScope.TrainDeparture(trainDeparture: DeparturesUiTrain) {
     Row {
         when (trainDeparture) {
             is DeparturesUiTrain.Data -> {
-                Text(trainDeparture.minutes.toString(), color = Color.White, fontSize = 140.sp)
+                Text(trainDeparture.minutes, color = Color.White, fontSize = 140.sp)
                 Column(
                     modifier = Modifier
                         .padding(start = 16.dp)
@@ -145,7 +143,7 @@ fun ColumnScope.BusDeparture(busDeparture: DeparturesUiBus) {
     Row {
         when (busDeparture) {
             is DeparturesUiBus.Data -> {
-                Text("-", color = Color.White, fontSize = 140.sp)
+                Text(busDeparture.minutes, color = Color.White, fontSize = 140.sp)
                 Column(
                     modifier = Modifier
                         .padding(start = 16.dp)
@@ -170,20 +168,22 @@ private fun DeparturesScreenDataPreview() {
             DeparturesUiState(
             departureData = DeparturesUiData(
                 firstTrain = DeparturesUiTrain.Data(
-                    minutes = 15,
+                    minutes = "15",
                     destination = "Moorgate",
                     time = "15:16"
                 ),
                 secondTrain = DeparturesUiTrain.Data(
-                    minutes = 30,
+                    minutes = "20",
                     destination = "Moorgate",
                     time = "15:41"
                 ),
                 firstBus = DeparturesUiBus.Data(
+                    minutes = "1",
                     time = "11:41",
                     destination = "Finsbury Park"
                 ),
                 secondBus = DeparturesUiBus.Data(
+                    minutes = "13",
                     time = "11:53",
                     destination = "Finsbury Park"
                 )
@@ -204,12 +204,12 @@ private fun DeparturesScreenErrorPreview() {
             DeparturesUiState(
             departureData = DeparturesUiData(
                 firstTrain = DeparturesUiTrain.Data(
-                    minutes = 15,
+                    minutes = "15",
                     destination = "Moorgate",
                     time = "15:16"
                 ),
                 secondTrain = DeparturesUiTrain.Data(
-                    minutes = 30,
+                    minutes = "30",
                     destination = "Moorgate",
                     time = "15:41"
                 ),
