@@ -17,8 +17,8 @@ data class DeparturesResponse(
 
 @JsonClass(generateAdapter = true)
 data class DepartureResponse(
-    val expected_arrival_time: String,
-    val best_arrival_estimate_mins: Int,
+    val expected_arrival_time: String?,
+    val best_arrival_estimate_mins: Int?,
     val station_detail: StationDetailResponse
 )
 

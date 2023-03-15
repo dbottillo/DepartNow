@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dbottillo.replacename.ApiResult
+import com.dbottillo.replacename.DepartureResponse
 import com.dbottillo.replacename.StationTimetableResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,12 +21,12 @@ class DeparturesViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val initialData = DeparturesUiData(
-        firstTrain = DeparturesUiTrainData(
+        firstTrain = DeparturesUiTrain.Data(
             minutes = 0,
             destination = "-",
             time = "HH:mm"
         ),
-        secondTrain = DeparturesUiTrainData(
+        secondTrain = DeparturesUiTrain.Data(
             minutes = 0,
             destination = "-",
             time = "HH:mm"
@@ -48,17 +49,22 @@ class DeparturesViewModel @Inject constructor(
         if (data == null) return initialData
         return DeparturesUiData(
             lastTimeUpdated = data.time_of_day,
-            firstTrain = DeparturesUiTrainData(
-                minutes = data.departures.all.firstOrNull()?.best_arrival_estimate_mins ?: 0,
-                destination = data.departures.all.firstOrNull()?.station_detail?.destination?.station_name ?: "-",
-                time = data.departures.all.firstOrNull()?.expected_arrival_time ?: "-",
-            ),
-            secondTrain = DeparturesUiTrainData(
-                minutes = data.departures.all.getOrNull(1)?.best_arrival_estimate_mins ?: 0,
-                destination = data.departures.all.getOrNull(1)?.station_detail?.destination?.station_name ?: "-",
-                time = data.departures.all.getOrNull(1)?.expected_arrival_time ?: "-",
-            )
+            firstTrain = mapTrainDeparture(data.departures.all.firstOrNull()),
+            secondTrain = mapTrainDeparture(data.departures.all.getOrNull(1))
         )
+    }
+
+    @Suppress("ReturnCount")
+    private fun mapTrainDeparture(departureResponse: DepartureResponse?): DeparturesUiTrain {
+        return departureResponse?.let {
+            val estimateMins = it.best_arrival_estimate_mins ?: return DeparturesUiTrain.None
+            val expectedArrivalTime = it.expected_arrival_time ?: return DeparturesUiTrain.None
+            DeparturesUiTrain.Data(
+                minutes = estimateMins,
+                destination = it.station_detail.destination.station_name,
+                time = expectedArrivalTime
+            )
+        } ?: DeparturesUiTrain.None
     }
 
     init {
@@ -92,12 +98,16 @@ sealed class DeparturesUiStatus {
 
 data class DeparturesUiData(
     val lastTimeUpdated: String = "-",
-    val firstTrain: DeparturesUiTrainData,
-    val secondTrain: DeparturesUiTrainData
+    val firstTrain: DeparturesUiTrain,
+    val secondTrain: DeparturesUiTrain
 )
 
-data class DeparturesUiTrainData(
-    val minutes: Int,
-    val destination: String,
-    val time: String
-)
+sealed class DeparturesUiTrain {
+    object None : DeparturesUiTrain()
+
+    data class Data(
+        val minutes: Int,
+        val destination: String,
+        val time: String
+    ) : DeparturesUiTrain()
+}

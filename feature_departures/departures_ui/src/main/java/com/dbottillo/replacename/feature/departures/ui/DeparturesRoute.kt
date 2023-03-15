@@ -29,7 +29,7 @@ import com.dbottillo.replacename.designsystem.ReplaceNameAppTheme
 import com.dbottillo.replacename.feature.departures.DeparturesUiData
 import com.dbottillo.replacename.feature.departures.DeparturesUiState
 import com.dbottillo.replacename.feature.departures.DeparturesUiStatus
-import com.dbottillo.replacename.feature.departures.DeparturesUiTrainData
+import com.dbottillo.replacename.feature.departures.DeparturesUiTrain
 import com.dbottillo.replacename.feature.departures.DeparturesViewModel
 
 @Composable
@@ -74,8 +74,8 @@ fun DeparturesScreen(uiState: DeparturesUiState, onBackClick: () -> Unit) {
                 .padding(16.dp)
         ) {
             Column {
-                Train(uiState.departureData.firstTrain)
-                Train(uiState.departureData.secondTrain)
+                TrainDeparture(uiState.departureData.firstTrain)
+                TrainDeparture(uiState.departureData.secondTrain)
             }
 
             if (uiState.status is DeparturesUiStatus.Loading) {
@@ -104,16 +104,23 @@ fun DeparturesScreen(uiState: DeparturesUiState, onBackClick: () -> Unit) {
 
 @Suppress("unused")
 @Composable
-fun ColumnScope.Train(train: DeparturesUiTrainData) {
+fun ColumnScope.TrainDeparture(trainDeparture: DeparturesUiTrain) {
     Row {
-        Text(train.minutes.toString(), color = Color.White, fontSize = 140.sp)
-        Column(
-            modifier = Modifier
-            .padding(start = 16.dp)
-            .align(Alignment.CenterVertically)
-        ) {
-            Text("${train.time} to", color = Color.White, fontSize = 30.sp)
-            Text(train.destination, color = Color.White, fontSize = 30.sp)
+        when (trainDeparture) {
+            is DeparturesUiTrain.Data -> {
+                Text(trainDeparture.minutes.toString(), color = Color.White, fontSize = 140.sp)
+                Column(
+                    modifier = Modifier
+                        .padding(start = 16.dp)
+                        .align(Alignment.CenterVertically)
+                ) {
+                    Text("${trainDeparture.time} to", color = Color.White, fontSize = 30.sp)
+                    Text(trainDeparture.destination, color = Color.White, fontSize = 30.sp)
+                }
+            }
+            DeparturesUiTrain.None -> {
+                Text("No train is departing", color = Color.White, fontSize = 30.sp)
+            }
         }
     }
 }
@@ -125,12 +132,12 @@ private fun DeparturesScreenLoadingPreview() {
         DeparturesScreen(
             DeparturesUiState(
             departureData = DeparturesUiData(
-                firstTrain = DeparturesUiTrainData(
+                firstTrain = DeparturesUiTrain.Data(
                     minutes = 15,
                     destination = "Moorgate",
                     time = "15:16"
                 ),
-                secondTrain = DeparturesUiTrainData(
+                secondTrain = DeparturesUiTrain.Data(
                     minutes = 30,
                     destination = "Moorgate",
                     time = "15:41"
@@ -149,12 +156,12 @@ private fun DeparturesScreenErrorPreview() {
         DeparturesScreen(
             DeparturesUiState(
             departureData = DeparturesUiData(
-                firstTrain = DeparturesUiTrainData(
+                firstTrain = DeparturesUiTrain.Data(
                     minutes = 15,
                     destination = "Moorgate",
                     time = "15:16"
                 ),
-                secondTrain = DeparturesUiTrainData(
+                secondTrain = DeparturesUiTrain.Data(
                     minutes = 30,
                     destination = "Moorgate",
                     time = "15:41"
