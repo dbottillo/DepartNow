@@ -19,4 +19,13 @@ interface DeparturesApiInterface {
         @Query(value = "type") type: String,
         @Query(value = "calling_at") callingAt: String
     ): Response<StationTimetableResponse>
+
+    @GET("bus/stop_timetables/{bus_stop}.json")
+    suspend fun busStopTimetable(
+        @Path(value = "bus_stop") busStop: String,
+        @Query(value = "app_key") appKey: String,
+        @Query(value = "app_id") appId: String,
+        @Query(value = "limit") limit: Int,
+        @Query(value = "live") live: Boolean
+    ): Response<BusStopTimetableResponse>
 }

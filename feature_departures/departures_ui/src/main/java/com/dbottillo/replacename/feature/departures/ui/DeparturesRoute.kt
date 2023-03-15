@@ -9,10 +9,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -27,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.dbottillo.replacename.designsystem.ReplaceNameAppTheme
+import com.dbottillo.replacename.feature.departures.DeparturesUiBus
 import com.dbottillo.replacename.feature.departures.DeparturesUiData
 import com.dbottillo.replacename.feature.departures.DeparturesUiState
 import com.dbottillo.replacename.feature.departures.DeparturesUiStatus
@@ -78,13 +81,16 @@ fun DeparturesScreen(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(0.5f)
+                .weight(1f)
                 .background(Color.Black.copy(0.8f))
                 .padding(16.dp)
         ) {
             Column {
                 TrainDeparture(uiState.departureData.firstTrain)
                 TrainDeparture(uiState.departureData.secondTrain)
+                Divider(modifier = Modifier.height(1.dp).padding(all = 16.dp))
+                BusDeparture(uiState.departureData.firstBus)
+                BusDeparture(uiState.departureData.secondBus)
             }
 
             if (uiState.status is DeparturesUiStatus.Loading) {
@@ -97,7 +103,6 @@ fun DeparturesScreen(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(0.5f)
                 .background(Color.Black.copy(0.8f))
                 .padding(16.dp)
         ) {
@@ -134,9 +139,32 @@ fun ColumnScope.TrainDeparture(trainDeparture: DeparturesUiTrain) {
     }
 }
 
+@Suppress("unused")
+@Composable
+fun ColumnScope.BusDeparture(busDeparture: DeparturesUiBus) {
+    Row {
+        when (busDeparture) {
+            is DeparturesUiBus.Data -> {
+                Text("-", color = Color.White, fontSize = 140.sp)
+                Column(
+                    modifier = Modifier
+                        .padding(start = 16.dp)
+                        .align(Alignment.CenterVertically)
+                ) {
+                    Text("${busDeparture.time} to", color = Color.White, fontSize = 30.sp)
+                    Text(busDeparture.destination, color = Color.White, fontSize = 30.sp)
+                }
+            }
+            DeparturesUiBus.None -> {
+                Text("No bus is departing", color = Color.White, fontSize = 30.sp)
+            }
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
-private fun DeparturesScreenLoadingPreview() {
+private fun DeparturesScreenDataPreview() {
     ReplaceNameAppTheme(darkTheme = false) {
         DeparturesScreen(
             DeparturesUiState(
@@ -150,9 +178,17 @@ private fun DeparturesScreenLoadingPreview() {
                     minutes = 30,
                     destination = "Moorgate",
                     time = "15:41"
+                ),
+                firstBus = DeparturesUiBus.Data(
+                    time = "11:41",
+                    destination = "Finsbury Park"
+                ),
+                secondBus = DeparturesUiBus.Data(
+                    time = "11:53",
+                    destination = "Finsbury Park"
                 )
             ),
-            status = DeparturesUiStatus.Loading
+            status = DeparturesUiStatus.Idle
         ),
             onBackClick = {},
             onRefresh = {}
@@ -176,7 +212,9 @@ private fun DeparturesScreenErrorPreview() {
                     minutes = 30,
                     destination = "Moorgate",
                     time = "15:41"
-                )
+                ),
+                firstBus = DeparturesUiBus.None,
+                secondBus = DeparturesUiBus.None
             ),
             status = DeparturesUiStatus.Error(Throwable("error"))
         ),

@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dbottillo.replacename.ApiResult
+import com.dbottillo.replacename.BusDepartureResponse
+import com.dbottillo.replacename.BusStopTimetableResponse
 import com.dbottillo.replacename.DepartureResponse
 import com.dbottillo.replacename.StationTimetableResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,14 +32,17 @@ class DeparturesViewModel @Inject constructor(
             minutes = 0,
             destination = "-",
             time = "HH:mm"
-        )
+        ),
+        firstBus = DeparturesUiBus.None,
+        secondBus = DeparturesUiBus.None
     )
 
     private val _dataFlow = MutableStateFlow<StationTimetableResponse?>(null)
+    private val _busDataFlow = MutableStateFlow<BusStopTimetableResponse?>(null)
     private val _statusFlow = MutableStateFlow<DeparturesUiStatus>(DeparturesUiStatus.Idle)
 
-    val uiState: StateFlow<DeparturesUiState> = combine(_dataFlow, _statusFlow) { data, status ->
-        DeparturesUiState(departureData = map(data), status = status)
+    val uiState: StateFlow<DeparturesUiState> = combine(_dataFlow, _busDataFlow, _statusFlow) { data, busData, status ->
+        DeparturesUiState(departureData = map(data, busData), status = status)
     }.stateIn(
         viewModelScope,
         SharingStarted.Eagerly,
@@ -45,12 +50,14 @@ class DeparturesViewModel @Inject constructor(
     )
 
     @Suppress("UNUSED_PARAMETER", "MagicNumber")
-    private fun map(data: StationTimetableResponse?): DeparturesUiData {
+    private fun map(data: StationTimetableResponse?, busData: BusStopTimetableResponse?): DeparturesUiData {
         if (data == null) return initialData
         return DeparturesUiData(
             lastTimeUpdated = data.time_of_day,
             firstTrain = mapTrainDeparture(data.departures.all.firstOrNull()),
-            secondTrain = mapTrainDeparture(data.departures.all.getOrNull(1))
+            secondTrain = mapTrainDeparture(data.departures.all.getOrNull(1)),
+            firstBus = mapBusDeparture(busData?.departures?.all?.getOrNull(0)),
+            secondBus = mapBusDeparture(busData?.departures?.all?.getOrNull(1))
         )
     }
 
@@ -67,22 +74,50 @@ class DeparturesViewModel @Inject constructor(
         } ?: DeparturesUiTrain.None
     }
 
+    @Suppress("ReturnCount")
+    private fun mapBusDeparture(departureResponse: BusDepartureResponse?): DeparturesUiBus {
+        return departureResponse?.let {
+            val time = it.expected_departure_time ?: return DeparturesUiBus.None
+            DeparturesUiBus.Data(
+                time = time,
+                destination = it.direction
+            )
+        } ?: DeparturesUiBus.None
+    }
+
     init {
         onRefresh()
     }
 
     fun onRefresh() {
         viewModelScope.launch {
-            _statusFlow.emit(DeparturesUiStatus.Loading)
-            when (val res = repository.get()) {
-                is ApiResult.Success -> {
-                    _dataFlow.emit(res.data)
-                    _statusFlow.emit(DeparturesUiStatus.Idle)
-                }
-                is ApiResult.Error -> {
-                    Log.e("TAG", "error: ${res.exception}")
-                    _statusFlow.emit(DeparturesUiStatus.Error(res.exception))
-                }
+            loadTrainData()
+            loadBusData()
+        }
+    }
+
+    private suspend fun loadTrainData() {
+        _statusFlow.emit(DeparturesUiStatus.Loading)
+        when (val res = repository.getStationTimetable()) {
+            is ApiResult.Success -> {
+                _dataFlow.emit(res.data)
+                _statusFlow.emit(DeparturesUiStatus.Idle)
+            }
+            is ApiResult.Error -> {
+                Log.e("TAG", "error: ${res.exception}")
+                _statusFlow.emit(DeparturesUiStatus.Error(res.exception))
+            }
+        }
+    }
+
+    private suspend fun loadBusData() {
+        when (val res = repository.getBusDepartures()) {
+            is ApiResult.Success -> {
+                _busDataFlow.emit(res.data)
+            }
+            is ApiResult.Error -> {
+                Log.e("TAG", "error: ${res.exception}")
+                _statusFlow.emit(DeparturesUiStatus.Error(res.exception))
             }
         }
     }
@@ -103,7 +138,9 @@ sealed class DeparturesUiStatus {
 data class DeparturesUiData(
     val lastTimeUpdated: String = "-",
     val firstTrain: DeparturesUiTrain,
-    val secondTrain: DeparturesUiTrain
+    val secondTrain: DeparturesUiTrain,
+    val firstBus: DeparturesUiBus,
+    val secondBus: DeparturesUiBus
 )
 
 sealed class DeparturesUiTrain {
@@ -114,4 +151,13 @@ sealed class DeparturesUiTrain {
         val destination: String,
         val time: String
     ) : DeparturesUiTrain()
+}
+
+sealed class DeparturesUiBus {
+    object None : DeparturesUiBus()
+
+    data class Data(
+        val time: String,
+        val destination: String
+    ) : DeparturesUiBus()
 }

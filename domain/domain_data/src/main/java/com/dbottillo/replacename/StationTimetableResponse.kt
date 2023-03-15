@@ -31,3 +31,19 @@ data class StationDetailResponse(
 data class StationDetailDestinationResponse(
     val station_name: String
 )
+
+@JsonClass(generateAdapter = true)
+data class BusStopTimetableResponse(
+    val departures: BusStopDepartureResponse
+)
+
+@JsonClass(generateAdapter = true)
+data class BusStopDepartureResponse(
+    val all: List<BusDepartureResponse>
+)
+
+@JsonClass(generateAdapter = true)
+data class BusDepartureResponse(
+    val expected_departure_time: String?,
+    val direction: String
+)
