@@ -68,6 +68,10 @@ class DeparturesViewModel @Inject constructor(
     }
 
     init {
+        onRefresh()
+    }
+
+    fun onRefresh() {
         viewModelScope.launch {
             _statusFlow.emit(DeparturesUiStatus.Loading)
             when (val res = repository.get()) {

@@ -1,6 +1,7 @@
 package com.dbottillo.replacename.feature.departures.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -40,16 +41,24 @@ fun DeparturesRoute(
     val uiState by viewModel.uiState.collectAsState()
     DeparturesScreen(
         uiState = uiState,
-        onBackClick = onBackClick
+        onBackClick = onBackClick,
+        onRefresh = viewModel::onRefresh
     )
 }
 
 @Composable
-fun DeparturesScreen(uiState: DeparturesUiState, onBackClick: () -> Unit) {
+fun DeparturesScreen(
+    uiState: DeparturesUiState,
+    onBackClick: () -> Unit,
+    onRefresh: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black)
+            .clickable {
+                onRefresh()
+            }
     ) {
         Row {
             IconButton(onClick = { onBackClick.invoke() }) {
@@ -144,8 +153,10 @@ private fun DeparturesScreenLoadingPreview() {
                 )
             ),
             status = DeparturesUiStatus.Loading
+        ),
+            onBackClick = {},
+            onRefresh = {}
         )
-        ) {}
     }
 }
 
@@ -168,7 +179,9 @@ private fun DeparturesScreenErrorPreview() {
                 )
             ),
             status = DeparturesUiStatus.Error(Throwable("error"))
+        ),
+            onBackClick = {},
+            onRefresh = {}
         )
-        ) {}
     }
 }
