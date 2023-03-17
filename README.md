@@ -13,7 +13,7 @@ transportapi_app_id=<value>
 
 <p float="center">
     <img src="home_base_project.png" width="200" />
-    <img src="train_base_project.png" width="200" /> 
+    <img src="train_bus_departures.png" width="200" /> 
 </p>
 
 ### Detekt
