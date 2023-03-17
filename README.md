@@ -1,8 +1,20 @@
 # Welcome !
 
-add detekt and pre-push hook section
+This is a template project for creating Android application using Compose, Coroutines, Retrofit& Dagger Hilt in a multi-module setup.
 
-## Code analysys
+## Showcase feature
+This sample application is made of an home screen with two tabs and a button to show the train & bus departures from a specific train station & bus stop in London (UK) using the [TransportAPI](https://developer.transportapi.com/). For obvious reasons, key & app_id are not part of the project so if you want to run the project you would need to add those two keys in the `local.properties` file:
+```
+    
+transportapi_app_key=<value>
+transportapi_app_id=<value>
+    
+```
+
+<p float="center">
+    <img src="home_base_project.png" width="100" />
+    <img src="train_base_project.png" width="100" /> 
+</p>
 
 ### Detekt
 [Detekt](https://detekt.github.io/detekt/) is a static code analysis tool for the Kotlin programming language. 
