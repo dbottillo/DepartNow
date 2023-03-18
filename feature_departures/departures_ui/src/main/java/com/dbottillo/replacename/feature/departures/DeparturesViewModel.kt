@@ -47,6 +47,7 @@ class DeparturesViewModel @Inject constructor(
     @Suppress("UNUSED_PARAMETER", "MagicNumber")
     private fun map(data: StationTimetableResponse?, busData: BusStopTimetableResponse?): DeparturesUiData {
         if (data == null) return initialData
+        val list = data.departures.all.filter { (it.best_arrival_estimate_mins ?: 0) > 2 }
         return DeparturesUiData(
             lastTimeUpdated = data.time_of_day,
             firstTrain = mapTrainDeparture(data.departures.all.firstOrNull()),

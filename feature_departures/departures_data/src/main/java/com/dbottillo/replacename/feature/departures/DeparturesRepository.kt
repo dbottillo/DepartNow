@@ -23,7 +23,7 @@ class DeparturesRepository @Inject constructor(
                 live = true,
                 trainStatus = STATION_TIMETABLE_TRAIN_STATUS_PASSENGER,
                 type = STATION_TIMETABLE_TYPE_DEPARTURE,
-                callingAt = "OLD"
+                callingAt = "FPK"
             )
             if (response.isSuccessful) {
                 val body = response.body()

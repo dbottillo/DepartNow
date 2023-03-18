@@ -83,7 +83,7 @@ fun DeparturesScreen(
                 .fillMaxWidth()
                 .weight(1f)
                 .background(Color.Black.copy(0.8f))
-                .padding(16.dp)
+                .padding(start = 16.dp, end = 16.dp)
         ) {
             Column {
                 TrainDeparture(uiState.departureData.firstTrain)
@@ -127,7 +127,7 @@ fun ColumnScope.TrainDeparture(trainDeparture: DeparturesUiTrain) {
                         .align(Alignment.CenterVertically)
                 ) {
                     Text("${trainDeparture.time} to", color = Color.White, fontSize = 30.sp)
-                    Text(trainDeparture.destination, color = Color.White, fontSize = 30.sp)
+                    Text(trainDeparture.destination, color = Color.White, fontSize = 26.sp)
                 }
             }
             DeparturesUiTrain.None -> {
@@ -150,7 +150,7 @@ fun ColumnScope.BusDeparture(busDeparture: DeparturesUiBus) {
                         .align(Alignment.CenterVertically)
                 ) {
                     Text("${busDeparture.time} to", color = Color.White, fontSize = 30.sp)
-                    Text(busDeparture.destination, color = Color.White, fontSize = 30.sp)
+                    Text(busDeparture.destination, color = Color.White, fontSize = 26.sp)
                 }
             }
             DeparturesUiBus.None -> {
