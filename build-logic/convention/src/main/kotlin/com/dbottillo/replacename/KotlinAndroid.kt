@@ -21,8 +21,8 @@ fun Project.configureKotlinAndroid(
         }
 
         compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_11
-            targetCompatibility = JavaVersion.VERSION_11
+            sourceCompatibility = JavaVersion.VERSION_17
+            targetCompatibility = JavaVersion.VERSION_17
             isCoreLibraryDesugaringEnabled = true
         }
 
@@ -40,8 +40,7 @@ fun Project.configureKotlinAndroid(
                 "-opt-in=kotlin.Experimental",
             )
 
-            // Set JVM target to 1.8
-            jvmTarget = JavaVersion.VERSION_11.toString()
+            jvmTarget = JavaVersion.VERSION_17.toString()
         }
 
         buildFeatures {

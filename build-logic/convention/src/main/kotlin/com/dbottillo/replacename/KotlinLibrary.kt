@@ -13,12 +13,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun Project.configureJavaAndKotlinVersions() {
     extensions.getByType<JavaPluginExtension>().apply {
-        this.sourceCompatibility = JavaVersion.VERSION_11
-        this.targetCompatibility = JavaVersion.VERSION_11
+        this.sourceCompatibility = JavaVersion.VERSION_17
+        this.targetCompatibility = JavaVersion.VERSION_17
     }
     tasks.withType<KotlinCompile> {
         kotlinOptions {
-            jvmTarget = "11"
+            jvmTarget = "17"
         }
     }
 }

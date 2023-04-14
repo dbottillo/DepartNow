@@ -48,7 +48,7 @@ internal class DeparturesRepositoryTest {
             live = true,
             trainStatus = "passenger",
             type = "departure",
-            callingAt = "OLD"
+            callingAt = "FPK"
         )
         ).thenReturn(Response.success(apiResponse))
 
@@ -72,7 +72,7 @@ internal class DeparturesRepositoryTest {
             live = true,
             trainStatus = "passenger",
             type = "departure",
-            callingAt = "OLD"
+            callingAt = "FPK"
         )
         ).thenReturn(response)
 

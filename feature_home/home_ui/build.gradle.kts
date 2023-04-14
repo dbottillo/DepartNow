@@ -4,6 +4,10 @@ plugins {
     id("replacename.android.hilt")
 }
 
+android {
+    namespace = "com.dbottillo.replacename.home"
+}
+
 dependencies {
     implementation(project(":feature_home:home_data"))
 }

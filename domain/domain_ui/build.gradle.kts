@@ -8,6 +8,7 @@ android {
     buildFeatures {
         buildConfig = true
     }
+    namespace = "com.dbottillo.replacename.domain"
 }
 
 dependencies {

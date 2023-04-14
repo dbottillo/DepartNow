@@ -36,12 +36,12 @@ val detektAll by tasks.registering(io.gitlab.arturbosch.detekt.Detekt::class) {
     exclude("**/build/**")
     baseline.fileValue(rootProject.file("config/detekt/baseline.xml"))
     reports {
-        xml.enabled = false
-        txt.enabled = false
-        sarif.enabled = false
+        xml.required.set(false)
+        txt.required.set(false)
+        sarif.required.set(false)
         html {
-            enabled = true
-            destination = file("build/reports/detekt.html")
+            required.set(true)
+            outputLocation.set(file("build/reports/detekt.html"))
         }
     }
 }

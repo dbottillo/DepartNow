@@ -4,6 +4,10 @@ plugins {
     id("replacename.android.hilt")
 }
 
+android {
+    namespace = "com.dbottillo.replacename.departures"
+}
+
 dependencies {
     implementation(project(":feature_departures:departures_data"))
 }

@@ -57,6 +57,7 @@ android {
         resources.excludes.add("META-INF/services/javax.annotation.processing.Processor")
         resources.excludes.add("META-INF/io.netty.versions.properties")
     }
+    namespace = "com.dbottillo.replacename"
 }
 
 dependencies {
