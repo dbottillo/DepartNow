@@ -41,15 +41,15 @@ internal class DeparturesRepositoryTest {
         val apiResponse = mock<StationTimetableResponse>()
         whenever(
             api.stationTimetable(
-            station = "HRN",
-            appId = appBuildConfig.transportAppId,
-            appKey = appBuildConfig.transportAppKey,
-            limit = 20,
-            live = true,
-            trainStatus = "passenger",
-            type = "departure",
-            callingAt = "FPK"
-        )
+                station = "HRN",
+                appId = appBuildConfig.transportAppId,
+                appKey = appBuildConfig.transportAppKey,
+                limit = 20,
+                live = true,
+                trainStatus = "passenger",
+                type = "departure",
+                callingAt = "FPK"
+            )
         ).thenReturn(Response.success(apiResponse))
 
         val result = repository.getStationTimetable()
@@ -65,15 +65,15 @@ internal class DeparturesRepositoryTest {
         whenever(response.message()).thenReturn("error")
         whenever(
             api.stationTimetable(
-            station = "HRN",
-            appId = appBuildConfig.transportAppId,
-            appKey = appBuildConfig.transportAppKey,
-            limit = 20,
-            live = true,
-            trainStatus = "passenger",
-            type = "departure",
-            callingAt = "FPK"
-        )
+                station = "HRN",
+                appId = appBuildConfig.transportAppId,
+                appKey = appBuildConfig.transportAppKey,
+                limit = 20,
+                live = true,
+                trainStatus = "passenger",
+                type = "departure",
+                callingAt = "FPK"
+            )
         ).thenReturn(response)
 
         val result = repository.getStationTimetable()
@@ -87,12 +87,12 @@ internal class DeparturesRepositoryTest {
         val apiResponse = mock<BusStopTimetableResponse>()
         whenever(
             api.busStopTimetable(
-            busStop = "490011232S",
-            appId = appBuildConfig.transportAppId,
-            appKey = appBuildConfig.transportAppKey,
-            limit = 20,
-            live = true
-        )
+                busStop = "490011232S",
+                appId = appBuildConfig.transportAppId,
+                appKey = appBuildConfig.transportAppKey,
+                limit = 20,
+                live = true
+            )
         ).thenReturn(Response.success(apiResponse))
 
         val result = repository.getBusDepartures()
@@ -108,12 +108,12 @@ internal class DeparturesRepositoryTest {
         whenever(response.message()).thenReturn("error")
         whenever(
             api.busStopTimetable(
-            busStop = "490011232S",
-            appId = appBuildConfig.transportAppId,
-            appKey = appBuildConfig.transportAppKey,
-            limit = 20,
-            live = true
-        )
+                busStop = "490011232S",
+                appId = appBuildConfig.transportAppId,
+                appKey = appBuildConfig.transportAppKey,
+                limit = 20,
+                live = true
+            )
         ).thenReturn(response)
 
         val result = repository.getBusDepartures()
