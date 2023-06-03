@@ -31,7 +31,7 @@ android {
         }
     }
 
-    lintOptions {
+    lint {
         xmlReport = false
         lintConfig = file("$rootDir/config/lint/lint.xml")
     }
@@ -45,7 +45,7 @@ android {
         viewBinding = true
     }
 
-    packagingOptions {
+    packaging {
         resources.excludes.add("LICENSE.txt")
         resources.excludes.add("LICENSE.txt")
         resources.excludes.add("META-INF/LICENSE.txt")
