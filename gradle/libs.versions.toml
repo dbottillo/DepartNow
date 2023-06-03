@@ -29,6 +29,7 @@ detekt = "1.23.0"
 versionsPlugin = "0.46.0"
 leakCanary = "2.11"
 lint = "31.0.2"
+moduleGraphPlugin = "0.4.0"
 
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -89,3 +90,4 @@ detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt"}
 versions = { id = "com.github.ben-manes.versions", version.ref = "versionsPlugin"}
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+modulegraph = { id = "dev.iurysouza.modulegraph", version.ref = "moduleGraphPlugin"}

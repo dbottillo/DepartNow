@@ -39,3 +39,91 @@ Detekt is highly configurable but at the moment the config file `config/detekt/d
 The current configuration with just two commands is very simple and fast but does have the drawback that the actual `./gradlew detekt` command doesn't do anything as it's configured at the top level of the project instead for each subprojects. Therefore, on CI machine we should remember to use the `detektAll` command instead.
 
 The formatting plugin is also enabled, which under the hood uses `Ktlint`. One caveats is that formatting issues can only be suppressed on file level `@file:Suppress(“detekt.rule”)`.§
+
+### Dependency Diagram
+
+```mermaid
+%%{
+  init: {
+    'theme': 'neutral'
+  }
+}%%
+
+graph LR
+
+  subgraph core
+    core_data
+    core_ui
+  end
+  subgraph domain
+    domain_data
+    domain_ui
+  end
+  subgraph feature_about
+    about_data
+    about_ui
+  end
+  subgraph feature_departures
+    departures_data
+    departures_ui
+  end
+  subgraph feature_home
+    home_data
+    home_ui
+  end
+  home_data --> core_data
+  home_data --> domain_data
+  home_data --> lint-rules
+  about_data --> core_data
+  about_data --> domain_data
+  about_data --> lint-rules
+  departures_data --> core_data
+  departures_data --> domain_data
+  departures_data --> lint-rules
+  home_ui --> core_ui
+  home_ui --> domain_ui
+  home_ui --> home_data
+  home_ui --> core_ui
+  home_ui --> domain_ui
+  home_ui --> home_data
+  departures_ui --> core_ui
+  departures_ui --> domain_ui
+  departures_ui --> departures_data
+  departures_ui --> core_ui
+  departures_ui --> domain_ui
+  departures_ui --> departures_data
+  domain_data --> lint-rules
+  domain_ui --> core_ui
+  domain_ui --> domain_data
+  domain_ui --> core_ui
+  domain_ui --> domain_data
+  app --> domain_ui
+  app --> home_ui
+  app --> home_data
+  app --> about_ui
+  app --> departures_ui
+  app --> domain_ui
+  app --> home_ui
+  app --> home_data
+  app --> about_ui
+  app --> departures_ui
+  app --> domain_ui
+  app --> home_ui
+  app --> home_data
+  app --> about_ui
+  app --> departures_ui
+  app --> domain_ui
+  app --> home_ui
+  app --> home_data
+  app --> about_ui
+  app --> departures_ui
+  about_ui --> core_ui
+  about_ui --> domain_ui
+  about_ui --> about_data
+  about_ui --> core_ui
+  about_ui --> domain_ui
+  about_ui --> about_data
+  core_data --> lint-rules
+  core_ui --> core_data
+
+```

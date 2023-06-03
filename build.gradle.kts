@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.hilt) apply false
+    alias(libs.plugins.modulegraph)
     alias(libs.plugins.detekt)
     alias(libs.plugins.versions)
 }
@@ -57,4 +58,9 @@ val detektAllBaseline by tasks.registering(io.gitlab.arturbosch.detekt.DetektCre
 
 dependencies {
     detektPlugins(libs.detekt.formatting)
+}
+
+moduleGraphConfig {
+    readmePath.set("./README.md")
+    heading.set("### Dependency Diagram")
 }
