@@ -28,32 +28,31 @@ class DeparturesViewModel @Inject constructor(
     private val initialData = DeparturesUiData(
         firstTrain = DeparturesUiTrain.None,
         secondTrain = DeparturesUiTrain.None,
-        firstBus = DeparturesUiBus.None,
-        secondBus = DeparturesUiBus.None
+        thirdTrain = DeparturesUiTrain.None,
+        fourthTrain = DeparturesUiTrain.None
     )
 
     private val _dataFlow = MutableStateFlow<StationTimetableResponse?>(null)
     private val _busDataFlow = MutableStateFlow<BusStopTimetableResponse?>(null)
     private val _statusFlow = MutableStateFlow<DeparturesUiStatus>(DeparturesUiStatus.Idle)
 
-    val uiState: StateFlow<DeparturesUiState> = combine(_dataFlow, _busDataFlow, _statusFlow) { data, busData, status ->
-        DeparturesUiState(departureData = map(data, busData), status = status)
+    val uiState: StateFlow<DeparturesUiState> = combine(_dataFlow, _statusFlow) { data, status ->
+        DeparturesUiState(departureData = map(data), status = status)
     }.stateIn(
         viewModelScope,
         SharingStarted.Eagerly,
         DeparturesUiState(departureData = initialData, status = DeparturesUiStatus.Idle)
     )
 
-    @Suppress("UNUSED_PARAMETER", "MagicNumber")
-    private fun map(data: StationTimetableResponse?, busData: BusStopTimetableResponse?): DeparturesUiData {
+    @Suppress("MagicNumber")
+    private fun map(data: StationTimetableResponse?): DeparturesUiData {
         if (data == null) return initialData
-        val list = data.departures.all.filter { (it.best_arrival_estimate_mins ?: 0) > 2 }
         return DeparturesUiData(
             lastTimeUpdated = data.time_of_day,
             firstTrain = mapTrainDeparture(data.departures.all.firstOrNull()),
             secondTrain = mapTrainDeparture(data.departures.all.getOrNull(1)),
-            firstBus = mapBusDeparture(busData?.departures?.all?.getOrNull(0)),
-            secondBus = mapBusDeparture(busData?.departures?.all?.getOrNull(1))
+            thirdTrain = mapTrainDeparture(data.departures.all.getOrNull(2)),
+            fourthTrain = mapTrainDeparture(data.departures.all.getOrNull(3))
         )
     }
 
@@ -100,7 +99,7 @@ class DeparturesViewModel @Inject constructor(
     fun onRefresh() {
         viewModelScope.launch {
             loadTrainData()
-            loadBusData()
+            // loadBusData()
         }
     }
 
@@ -147,8 +146,8 @@ data class DeparturesUiData(
     val lastTimeUpdated: String = "-",
     val firstTrain: DeparturesUiTrain,
     val secondTrain: DeparturesUiTrain,
-    val firstBus: DeparturesUiBus,
-    val secondBus: DeparturesUiBus
+    val thirdTrain: DeparturesUiTrain,
+    val fourthTrain: DeparturesUiTrain
 )
 
 sealed class DeparturesUiTrain {

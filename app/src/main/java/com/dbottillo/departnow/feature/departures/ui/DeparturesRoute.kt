@@ -89,8 +89,8 @@ fun DeparturesScreen(
                 TrainDeparture(uiState.departureData.firstTrain)
                 TrainDeparture(uiState.departureData.secondTrain)
                 Divider(modifier = Modifier.height(1.dp).padding(all = 16.dp))
-                BusDeparture(uiState.departureData.firstBus)
-                BusDeparture(uiState.departureData.secondBus)
+                TrainDeparture(uiState.departureData.thirdTrain)
+                TrainDeparture(uiState.departureData.fourthTrain)
             }
 
             if (uiState.status is DeparturesUiStatus.Loading) {
@@ -177,15 +177,15 @@ private fun DeparturesScreenDataPreview() {
                     destination = "Moorgate",
                     time = "15:41"
                 ),
-                firstBus = DeparturesUiBus.Data(
-                    minutes = "1",
-                    time = "11:41",
-                    destination = "Finsbury Park"
+                thirdTrain = DeparturesUiTrain.Data(
+                    minutes = "35",
+                    destination = "Moorgate",
+                    time = "15:51"
                 ),
-                secondBus = DeparturesUiBus.Data(
-                    minutes = "13",
-                    time = "11:53",
-                    destination = "Finsbury Park"
+                fourthTrain = DeparturesUiTrain.Data(
+                    minutes = "50",
+                    destination = "Moorgate",
+                    time = "16:31"
                 )
             ),
             status = DeparturesUiStatus.Idle
@@ -213,8 +213,8 @@ private fun DeparturesScreenErrorPreview() {
                     destination = "Moorgate",
                     time = "15:41"
                 ),
-                firstBus = DeparturesUiBus.None,
-                secondBus = DeparturesUiBus.None
+                thirdTrain = DeparturesUiTrain.None,
+                fourthTrain = DeparturesUiTrain.None
             ),
             status = DeparturesUiStatus.Error(Throwable("error"))
         ),
