@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="NightAdjusted.Theme.DepartNow" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+    </style>
+
+    <style name="PlatformAdjusted.Theme.DepartNow" parent="NightAdjusted.Theme.DepartNow">
+        <item name="android:statusBarColor">@color/black30</item>
+    </style>
+
+    <style name="AppTheme.DepartNow" parent="PlatformAdjusted.Theme.DepartNow" />
+</resources>
