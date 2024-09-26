@@ -13,5 +13,5 @@ transportapi_app_id=<value>
     <img src="train_bus_departures.png" width="200" /> 
 </p>
 
-The idea of the train departure app is to be used as a full screen display on a standing phone to inform about the next departures of the nearby station & bus stop. 
+The idea of the train departure app is to be used as a full screen display on a standing phone to inform about the next departures of the nearby train station. 
 The API comes with 30 free api requests a day so instead of having some form of automatic refresh, it will just react on touching the screen instead.
