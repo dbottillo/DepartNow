@@ -3,6 +3,7 @@ package com.dbottillo.departnow.di
 import com.dbottillo.departnow.BuildConfig
 import com.dbottillo.departnow.AppBuildConfig
 import com.dbottillo.departnow.DeparturesApiInterface
+import com.dbottillo.departnow.network.TflApiInterface
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,6 +31,21 @@ class AppModule {
             .client(client.build())
             .build()
             .create(DeparturesApiInterface::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideTflApIService(): TflApiInterface {
+        val logging = HttpLoggingInterceptor()
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+        val client = OkHttpClient.Builder()
+            .addInterceptor(logging)
+        return Retrofit.Builder()
+            .baseUrl("https://api.tfl.gov.uk")
+            .addConverterFactory(MoshiConverterFactory.create())
+            .client(client.build())
+            .build()
+            .create(TflApiInterface::class.java)
     }
 
     @Singleton

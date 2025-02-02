@@ -2,13 +2,15 @@ package com.dbottillo.departnow.feature.departures
 
 import com.dbottillo.departnow.ApiResult
 import com.dbottillo.departnow.AppBuildConfig
-import com.dbottillo.departnow.BusStopTimetableResponse
 import com.dbottillo.departnow.DeparturesApiInterface
 import com.dbottillo.departnow.StationTimetableResponse
+import com.dbottillo.departnow.network.TflApiInterface
+import com.dbottillo.departnow.network.TflEntity
 import javax.inject.Inject
 
 class DeparturesRepository @Inject constructor(
     private val api: DeparturesApiInterface,
+    private val tflApi: TflApiInterface,
     private val appBuildConfig: AppBuildConfig
 ) {
 
@@ -36,14 +38,10 @@ class DeparturesRepository @Inject constructor(
     }
 
     @Suppress("TooGenericExceptionCaught")
-    suspend fun getBusDepartures(): ApiResult<BusStopTimetableResponse> {
+    suspend fun getBusDepartures(): ApiResult<List<TflEntity>> {
         return try {
-            val response = api.busStopTimetable(
-                busStop = "490011232S",
-                appId = appBuildConfig.transportAppId,
-                appKey = appBuildConfig.transportAppKey,
-                limit = STATION_TIMETABLE_LIMIT,
-                live = true
+            val response = tflApi.stationTimetable(
+                station = "490011232S",
             )
             if (response.isSuccessful) {
                 val body = response.body()

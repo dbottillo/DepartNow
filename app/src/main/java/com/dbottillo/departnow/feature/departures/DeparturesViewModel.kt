@@ -4,11 +4,9 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dbottillo.departnow.ApiResult
-import com.dbottillo.departnow.BusDepartureResponse
-import com.dbottillo.departnow.BusExpectedResponse
-import com.dbottillo.departnow.BusStopTimetableResponse
 import com.dbottillo.departnow.DepartureResponse
 import com.dbottillo.departnow.StationTimetableResponse
+import com.dbottillo.departnow.network.TflEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -17,6 +15,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import javax.inject.Inject
 
@@ -29,15 +28,17 @@ class DeparturesViewModel @Inject constructor(
         firstTrain = DeparturesUiTrain.None,
         secondTrain = DeparturesUiTrain.None,
         thirdTrain = DeparturesUiTrain.None,
-        fourthTrain = DeparturesUiTrain.None
+        fourthTrain = DeparturesUiTrain.None,
+        firstBus = DeparturesUiBus.None,
+        secondBus = DeparturesUiBus.None
     )
 
     private val _dataFlow = MutableStateFlow<StationTimetableResponse?>(null)
-    private val _busDataFlow = MutableStateFlow<BusStopTimetableResponse?>(null)
+    private val _busDataFlow = MutableStateFlow<List<TflEntity>?>(null)
     private val _statusFlow = MutableStateFlow<DeparturesUiStatus>(DeparturesUiStatus.Idle)
 
-    val uiState: StateFlow<DeparturesUiState> = combine(_dataFlow, _statusFlow) { data, status ->
-        DeparturesUiState(departureData = map(data), status = status)
+    val uiState: StateFlow<DeparturesUiState> = combine(_dataFlow, _busDataFlow, _statusFlow) { data, bus, status ->
+        DeparturesUiState(departureData = map(data, bus ?: emptyList()), status = status)
     }.stateIn(
         viewModelScope,
         SharingStarted.Eagerly,
@@ -45,51 +46,60 @@ class DeparturesViewModel @Inject constructor(
     )
 
     @Suppress("MagicNumber")
-    private fun map(data: StationTimetableResponse?): DeparturesUiData {
+    private fun map(data: StationTimetableResponse?, bus: List<TflEntity>): DeparturesUiData {
         if (data == null) return initialData
+        val mapped = data.departures.all.map { mapTrainDeparture(it) }
+        val before = mapped.filter { it is DeparturesUiTrain.Data && it.minutes <= 9 }
+        val after = mapped.filter { it is DeparturesUiTrain.None || (it as DeparturesUiTrain.Data).minutes > 9 }
+        val beforeString = before.filterIsInstance<DeparturesUiTrain.Data>().joinToString(separator = "-") {
+            "In ${it.minutes} (${it.time})"
+        }
+        val mappedBus = bus.map { mapBusDeparture(it) }.sortedBy { it.minutes }
+        val beforeBus = mappedBus.filter { it.minutes <= 6 }
+        val afterBus = mappedBus.filter { it.minutes > 6 }
+        val beforeBusString = beforeBus.joinToString(separator = "-") {
+            "In ${it.minutes} (${it.time})"
+        }
         return DeparturesUiData(
             lastTimeUpdated = data.time_of_day,
-            firstTrain = mapTrainDeparture(data.departures.all.firstOrNull()),
-            secondTrain = mapTrainDeparture(data.departures.all.getOrNull(1)),
-            thirdTrain = mapTrainDeparture(data.departures.all.getOrNull(2)),
-            fourthTrain = mapTrainDeparture(data.departures.all.getOrNull(3))
+            trainBefore = beforeString,
+            firstTrain = after.firstOrNull() ?: DeparturesUiTrain.None,
+            secondTrain = after.getOrNull(1) ?: DeparturesUiTrain.None,
+            thirdTrain = after.getOrNull(2) ?: DeparturesUiTrain.None,
+            fourthTrain = after.getOrNull(23) ?: DeparturesUiTrain.None,
+            beforeBus = beforeBusString,
+            firstBus = afterBus.firstOrNull() ?: DeparturesUiBus.None,
+            secondBus = afterBus.getOrNull(1) ?: DeparturesUiBus.None,
         )
     }
 
     @Suppress("ReturnCount")
-    private fun mapTrainDeparture(departureResponse: DepartureResponse?): DeparturesUiTrain {
-        return departureResponse?.let {
-            val estimateMins = it.best_arrival_estimate_mins ?: return DeparturesUiTrain.None
-            val expectedArrivalTime = it.expected_arrival_time ?: return DeparturesUiTrain.None
-            DeparturesUiTrain.Data(
-                minutes = estimateMins.toString(),
-                destination = it.station_detail.destination.station_name,
-                time = expectedArrivalTime
-            )
-        } ?: DeparturesUiTrain.None
+    private fun mapTrainDeparture(departureResponse: DepartureResponse): DeparturesUiTrain {
+        val estimateMins = departureResponse.best_arrival_estimate_mins ?: return DeparturesUiTrain.None
+        val expectedArrivalTime = departureResponse.expected_arrival_time ?: return DeparturesUiTrain.None
+        return DeparturesUiTrain.Data(
+            minutes = estimateMins,
+            destination = departureResponse.station_detail.destination.station_name,
+            time = expectedArrivalTime
+        )
     }
 
     @Suppress("ReturnCount")
-    private fun mapBusDeparture(departureResponse: BusDepartureResponse?): DeparturesUiBus {
-        return departureResponse?.let {
-            val time = it.expected_departure_time ?: return DeparturesUiBus.None
-            DeparturesUiBus.Data(
-                minutes = calculateMinutes(it.expected),
-                time = time,
-                destination = it.direction
-            )
-        } ?: DeparturesUiBus.None
+    private fun mapBusDeparture(entity: TflEntity): DeparturesUiBus.Data {
+        val (minutes, time) = calculateMinutes(entity)
+        return DeparturesUiBus.Data(
+            minutes = minutes.toInt(),
+            time = time,
+            destination = entity.towards
+        )
     }
 
     @Suppress("ReturnCount")
-    private fun calculateMinutes(expected: BusExpectedResponse?): String {
-        if (expected == null) return "-"
-        val date = expected.arrival.date
-        val time = expected.arrival.time
-        if (date == null || time == null) return "-"
-        val arrival = OffsetDateTime.parse("${date}T$time:00+00:00")
+    private fun calculateMinutes(expected: TflEntity): Pair<Long, String> {
+        val arrival = OffsetDateTime.parse(expected.expectedArrival)
+        val formatter = DateTimeFormatter.ofPattern("HH:mm")
         val now = OffsetDateTime.now()
-        return ChronoUnit.MINUTES.between(now, arrival).toString()
+        return ChronoUnit.MINUTES.between(now, arrival) to arrival.format(formatter)
     }
 
     init {
@@ -99,7 +109,7 @@ class DeparturesViewModel @Inject constructor(
     fun onRefresh() {
         viewModelScope.launch {
             loadTrainData()
-            // loadBusData()
+            loadBusData()
         }
     }
 
@@ -144,27 +154,31 @@ sealed class DeparturesUiStatus {
 
 data class DeparturesUiData(
     val lastTimeUpdated: String = "-",
+    val trainBefore: String = "",
     val firstTrain: DeparturesUiTrain,
     val secondTrain: DeparturesUiTrain,
     val thirdTrain: DeparturesUiTrain,
-    val fourthTrain: DeparturesUiTrain
+    val fourthTrain: DeparturesUiTrain,
+    val beforeBus: String? = "",
+    val firstBus: DeparturesUiBus,
+    val secondBus: DeparturesUiBus,
 )
 
 sealed class DeparturesUiTrain {
-    object None : DeparturesUiTrain()
+    data object None : DeparturesUiTrain()
 
     data class Data(
-        val minutes: String,
+        val minutes: Int,
         val destination: String,
         val time: String
     ) : DeparturesUiTrain()
 }
 
 sealed class DeparturesUiBus {
-    object None : DeparturesUiBus()
+    data object None : DeparturesUiBus()
 
     data class Data(
-        val minutes: String,
+        val minutes: Int,
         val time: String,
         val destination: String
     ) : DeparturesUiBus()

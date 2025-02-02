@@ -2,9 +2,11 @@
 <SmellBaseline>
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
+    <ID>Filename:TflBusArrivalsResponse.kt$com.dbottillo.departnow.network.TflBusArrivalsResponse.kt</ID>
+    <ID>MagicNumber:build.gradle.kts$10</ID>
     <ID>MagicNumber:build.gradle.kts$28</ID>
-    <ID>MagicNumber:build.gradle.kts$34</ID>
-    <ID>MagicNumber:build.gradle.kts$9</ID>
+    <ID>MagicNumber:build.gradle.kts$35</ID>
+    <ID>MatchingDeclarationName:TflBusArrivalsResponse.kt$TflEntity</ID>
     <ID>StringLiteralDuplication:build.gradle.kts$"String"</ID>
     <ID>StringLiteralDuplication:build.gradle.kts$"engBuild"</ID>
   </CurrentIssues>
