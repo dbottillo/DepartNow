@@ -10,15 +10,15 @@ plugins {
 }
 
 android {
-    compileSdk = 34
-    buildToolsVersion = "34.0.0"
+    compileSdk = 35
+    buildToolsVersion = "35.0.0"
 
     defaultConfig {
         applicationId = "com.dbottillo.departnow"
         minSdk = 28
-        targetSdk = 34
-        versionCode = 9
-        versionName = "0.1.0"
+        targetSdk = 35
+        versionCode = 10
+        versionName = "0.2.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
