@@ -51,7 +51,7 @@ fun DepartNowApp(
         modifier = Modifier.semantics {
             testTagsAsResourceId = true
         },
-        containerColor = Color.Transparent,
+        containerColor = Color.Black,
         contentColor = MaterialTheme.colorScheme.onBackground,
         snackbarHost = { SnackbarHost(snackbarHostState) },
         bottomBar = {

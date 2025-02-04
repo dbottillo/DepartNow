@@ -2,6 +2,7 @@ package com.dbottillo.departnow.feature.departures.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,16 +23,16 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.dbottillo.departnow.designsystem.DepartNowAppTheme
-import com.dbottillo.departnow.feature.departures.DeparturesUiBus
+import com.dbottillo.departnow.feature.departures.DeparturesUi
 import com.dbottillo.departnow.feature.departures.DeparturesUiData
 import com.dbottillo.departnow.feature.departures.DeparturesUiState
 import com.dbottillo.departnow.feature.departures.DeparturesUiStatus
-import com.dbottillo.departnow.feature.departures.DeparturesUiTrain
 import com.dbottillo.departnow.feature.departures.DeparturesViewModel
 
 @Composable
@@ -83,16 +84,48 @@ fun DeparturesScreen(
                 .background(Color.Black.copy(0.8f))
                 .padding(start = 16.dp, end = 16.dp)
         ) {
-            Column {
-                TrainDeparture(uiState.departureData.firstTrain)
-                TrainDeparture(uiState.departureData.secondTrain)
-                TrainDepartures(uiState.departureData.thirdTrain, uiState.departureData.fourthTrain)
-                HorizontalDivider(Modifier.padding(all = 16.dp))
-                uiState.departureData.beforeBus?.let {
-                    Text(text = it)
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceEvenly
+            ) {
+                /*TrainDeparture(uiState.departureData.firstTrain)
+                TrainDeparture(uiState.departureData.secondTrain)*/
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    if (uiState.departureData.trainBefore.isNotEmpty()) {
+                        Text(text = uiState.departureData.trainBefore, color = Color.White)
+                    }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Departure(uiState.departureData.firstTrain)
+                        Departure(uiState.departureData.secondTrain)
+                    }
+                    Departures(uiState.departureData.otherTrains)
                 }
-                BusDeparture(uiState.departureData.firstBus)
-                BusDeparture(uiState.departureData.secondBus)
+                HorizontalDivider(Modifier.padding(all = 16.dp))
+                /*BusDeparture(uiState.departureData.firstBus)
+                BusDeparture(uiState.departureData.secondBus)*/
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    uiState.departureData.beforeBus?.let {
+                        Text(text = it, color = Color.White,)
+                    }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Departure(uiState.departureData.firstBus)
+                        Departure(uiState.departureData.secondBus)
+                    }
+                    Departures(uiState.departureData.otherBus)
+                }
             }
 
             if (uiState.status is DeparturesUiStatus.Loading) {
@@ -117,11 +150,11 @@ fun DeparturesScreen(
 }
 
 @Composable
-fun TrainDeparture(trainDeparture: DeparturesUiTrain) {
-    Row {
+fun Departure(departure: DeparturesUi) {
+   /* Row {
         when (trainDeparture) {
             is DeparturesUiTrain.Data -> {
-                Text(trainDeparture.minutes.toString(), color = Color.White, fontSize = 140.sp)
+                Text(trainDeparture.minutes.toString(), color = Color.White, fontSize = 130.sp)
                 Column(
                     modifier = Modifier
                         .padding(start = 16.dp)
@@ -135,47 +168,50 @@ fun TrainDeparture(trainDeparture: DeparturesUiTrain) {
                 Text("No train is departing", color = Color.White, fontSize = 30.sp)
             }
         }
-    }
-}
-
-@Composable
-fun TrainDepartures(trainDepartureThird: DeparturesUiTrain, trainDepartureFourth: DeparturesUiTrain) {
-    val text = buildString {
-        append("Also ")
-        when (trainDepartureThird) {
-            is DeparturesUiTrain.Data -> append("in ${trainDepartureThird.minutes} (${trainDepartureThird.time})")
-            DeparturesUiTrain.None -> append("no train is departing")
-        }
-        append(" - ")
-        when (trainDepartureFourth) {
-            is DeparturesUiTrain.Data -> append("In ${trainDepartureFourth.minutes} (${trainDepartureFourth.time})")
-            DeparturesUiTrain.None -> append("No train is departing")
-        }
-    }
-    Text(
-        text = text
-    )
-}
-
-@Composable
-fun BusDeparture(busDeparture: DeparturesUiBus) {
-    Row {
-        when (busDeparture) {
-            is DeparturesUiBus.Data -> {
-                Text(busDeparture.minutes.toString(), color = Color.White, fontSize = 140.sp)
+    }*/
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        when (departure) {
+            is DeparturesUi.Data -> {
+                Text(
+                    departure.minutes.toString(),
+                    color = Color.White,
+                    fontSize = 140.sp
+                )
                 Column(
                     modifier = Modifier
                         .padding(start = 16.dp)
-                        .align(Alignment.CenterVertically)
                 ) {
-                    Text("${busDeparture.time} to", color = Color.White, fontSize = 30.sp)
-                    Text(busDeparture.destination, color = Color.White, fontSize = 26.sp)
+                    Text("${departure.time} to", color = Color.White, fontSize = 22.sp)
+                    Text(departure.destination, color = Color.White, fontSize = 20.sp)
                 }
             }
-            DeparturesUiBus.None -> {
-                Text("No bus is departing", color = Color.White, fontSize = 30.sp)
+            DeparturesUi.None -> {
+                Text(
+                    "No\ndeparture",
+                    color = Color.White,
+                    fontSize = 30.sp,
+                    textAlign = TextAlign.Center
+                )
             }
         }
+    }
+}
+
+@Composable
+fun Departures(other: List<DeparturesUi>) {
+    if (other.isNotEmpty()) {
+        val text = other.filterIsInstance<DeparturesUi.Data>().joinToString(separator = " - ") { train ->
+            "${train.minutes} (${train.time})"
+        }
+        Text(
+            modifier = Modifier.padding(top = 16.dp).fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            text = text,
+            maxLines = 1,
+            color = Color.White
+        )
     }
 }
 
@@ -186,36 +222,51 @@ private fun DeparturesScreenDataPreview() {
         DeparturesScreen(
             DeparturesUiState(
             departureData = DeparturesUiData(
-                firstTrain = DeparturesUiTrain.Data(
+                firstTrain = DeparturesUi.Data(
                     minutes = 15,
                     destination = "Moorgate",
                     time = "15:16"
                 ),
-                secondTrain = DeparturesUiTrain.Data(
+                secondTrain = DeparturesUi.Data(
                     minutes = 20,
                     destination = "Moorgate",
                     time = "15:41"
                 ),
-                thirdTrain = DeparturesUiTrain.Data(
-                    minutes = 35,
-                    destination = "Moorgate",
-                    time = "15:51"
+                otherTrains = listOf(
+                    DeparturesUi.Data(
+                        minutes = 35,
+                        destination = "Moorgate",
+                        time = "15:51"
+                    ),
+                    DeparturesUi.Data(
+                        minutes = 50,
+                        destination = "Moorgate",
+                        time = "16:31"
+                    )
                 ),
-                fourthTrain = DeparturesUiTrain.Data(
-                    minutes = 50,
-                    destination = "Moorgate",
-                    time = "16:31"
-                ),
-                firstBus = DeparturesUiBus.Data(
+                beforeBus = "In 1 (12:00)",
+                firstBus = DeparturesUi.Data(
                     minutes = 2,
                     time = "15:16",
-                    destination = "Moorgate"
+                    destination = "Finsbury Park"
                 ),
-                secondBus = DeparturesUiBus.Data(
+                secondBus = DeparturesUi.Data(
                     minutes = 4,
                     time = "15:16",
-                    destination = "Moorgate"
+                    destination = "Finsbury Park"
                 ),
+                otherBus = listOf(
+                    DeparturesUi.Data(
+                        minutes = 12,
+                        time = "13:16",
+                        destination = "Finsbury Park"
+                    ),
+                    DeparturesUi.Data(
+                        minutes = 16,
+                        time = "16:16",
+                        destination = "Finsbury Park"
+                    ),
+                )
             ),
             status = DeparturesUiStatus.Idle
         ),
@@ -233,31 +284,54 @@ private fun DeparturesScreenErrorPreview() {
             DeparturesUiState(
             departureData = DeparturesUiData(
                 trainBefore = "In 20 (12:00) - In 5 (10:00)",
-                firstTrain = DeparturesUiTrain.Data(
+                firstTrain = DeparturesUi.Data(
                     minutes = 15,
                     destination = "Moorgate",
                     time = "15:16"
                 ),
-                secondTrain = DeparturesUiTrain.Data(
+                secondTrain = DeparturesUi.Data(
                     minutes = 30,
                     destination = "Moorgate",
                     time = "15:41"
                 ),
-                thirdTrain = DeparturesUiTrain.None,
-                fourthTrain = DeparturesUiTrain.None,
-                firstBus = DeparturesUiBus.Data(
+                otherTrains = emptyList(),
+                firstBus = DeparturesUi.Data(
                     minutes = 5,
                     time = "15:16",
                     destination = "Moorgate"
                 ),
-                secondBus = DeparturesUiBus.Data(
+                secondBus = DeparturesUi.Data(
                     minutes = 6,
                     time = "15:16",
                     destination = "Moorgate"
                 ),
+                otherBus = emptyList()
             ),
             status = DeparturesUiStatus.Error(Throwable("error"))
         ),
+            onBackClick = {},
+            onRefresh = {}
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun DeparturesScreenEmptyPreview() {
+    DepartNowAppTheme(darkTheme = false) {
+        DeparturesScreen(
+            DeparturesUiState(
+                departureData = DeparturesUiData(
+                    trainBefore = "",
+                    firstTrain = DeparturesUi.None,
+                    secondTrain = DeparturesUi.None,
+                    otherTrains = emptyList(),
+                    firstBus = DeparturesUi.None,
+                    secondBus = DeparturesUi.None,
+                    otherBus = emptyList()
+                ),
+                status = DeparturesUiStatus.Error(Throwable("error"))
+            ),
             onBackClick = {},
             onRefresh = {}
         )
